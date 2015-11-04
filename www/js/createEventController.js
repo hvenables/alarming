@@ -1,4 +1,4 @@
-ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification) {
+ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification, $state) {
 
   $scope.currentDate = new Date();
   $scope.time = new Date();
@@ -6,8 +6,8 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
   $scope.createEvent = function() {
     var description = $scope.description;
     $scope.description = null;
-    var title = $scope.title;
-    $scope.title = null;
+    var eventTitle = $scope.eventTitle;
+    $scope.eventTitle = null;
     var time = $scope.time;
     $scope.time = null;
     var currentDate = $scope.currentDate;
@@ -20,7 +20,7 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
     var alarmTime = currentDate;
 
     var currentEvent = {
-      title: title,
+      eventTitle: eventTitle,
       description: description,
       datetime: alarmTime,
     };
@@ -28,7 +28,7 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
 
     $cordovaLocalNotification.schedule([{
       id: 1,
-      title: currentEvent.title,
+      title: currentEvent.eventTitle,
       text: currentEvent.description,
       at: currentEvent.datetime,
     },{

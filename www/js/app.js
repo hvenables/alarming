@@ -15,13 +15,31 @@ ionicApp.run(function($ionicPlatform) {
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/event')
+  $urlRouterProvider.otherwise('/sign-in');
 
   $stateProvider
+  .state('signin', {
+      url: '/sign-in',
+      templateUrl: 'templates/sign-in.html',
+      controller: 'SignInCtrl',
+    })
+    .state('forgotpassword', {
+      url: '/forgot-password',
+      templateUrl: 'templates/forgot-password.html',
+    })
+    .state('tabs', {
+      url: '/tab',
+      abstract: true,
+      templateUrl: 'templates/tabs.html',
+    })
+    .state('tabs.createEvent', {
+      url: '/event',
+      views: {
+        'home-tab': {
+          templateUrl: 'templates/event.html',
+          controller: 'CreateEventCtrl',
+        }
+      }
+    });
 
-  .state('createEvent', {
-    url: '/event',
-    templateUrl: 'templates/event.html',
-    controller: 'CreateEventCtrl'
-  })
-})
+});
