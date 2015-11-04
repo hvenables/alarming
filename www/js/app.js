@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var ionicApp = angular.module('starter', ['ionic', 'ngCordova']);
+var ionicApp = angular.module('alarming', ['ionic', 'ngCordova']);
 
 ionicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -18,6 +18,19 @@ ionicApp.run(function($ionicPlatform) {
     }
   });
 });
+
+ionicApp.config(function($stateProvider, $urlRouterProvider) {
+
+  $urlRouterProvider.otherwise('/event')
+
+  $stateProvider
+  // Set up an abstract state for the tabs directive:
+  .state('createEvent', {
+    url: '/event',
+    templateUrl: 'templates/event.html',
+    controller: 'CreateEventCtrl'
+  })
+})
 
 ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification) {
 
