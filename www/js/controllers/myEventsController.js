@@ -1,4 +1,4 @@
-ionicApp.controller('MyEventsCtrl', function($scope, $state, $firebase) {
+ionicApp.controller('MyEventsCtrl', function($scope, $firebase) {
 
   var ref = new Firebase('https://event-alarm.firebaseio.com/events');
   ref.on('value', function(events) {

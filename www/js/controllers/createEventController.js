@@ -39,11 +39,6 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
       title: currentEvent.eventTitle,
       text: currentEvent.description,
       at: Date.parse(currentEvent.datetime),
-    },{
-      id: 2,
-      title: 'Hello',
-      text: 'WTF',
-      at: alarmTime,
     }]);
   };
 });
