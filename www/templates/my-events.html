@@ -1,1 +1,9 @@
-<h1>Hello</h1>
+<ion-view>
+  <ion-content>
+    <div ng-repeat="event in eventsArray">
+      {{event.eventTitle}}
+      {{event.description}}
+      {{event.datetime | date:'medium' }}
+    </div>
+  </ion-content>
+</ion-view>

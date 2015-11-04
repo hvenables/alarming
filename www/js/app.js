@@ -46,7 +46,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'my-events-tab': {
           templateUrl: 'templates/my-events.html',
-          controller: 'myEvents',
+          controller: 'MyEventsCtrl',
         }
       }
     });
