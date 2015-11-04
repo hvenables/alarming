@@ -19,14 +19,14 @@ ionicApp.run(function($ionicPlatform) {
   });
 });
 
-ionicApp.controller('ExampleController', function($scope, $cordovaLocalNotification) {
+ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification) {
 
   $scope.currentDate = new Date();
   $scope.time = new Date();
 
-  $scope.add = function() {
-    var message = $scope.message;
-    $scope.message = null;
+  $scope.createEvent = function() {
+    var description = $scope.description;
+    $scope.description = null;
     var title = $scope.title;
     $scope.title = null;
     var time = $scope.time;
@@ -42,7 +42,7 @@ ionicApp.controller('ExampleController', function($scope, $cordovaLocalNotificat
 
     var currentEvent = {
       title: title,
-      message: message,
+      description: description,
       datetime: alarmTime,
     };
     var events = {};
@@ -50,7 +50,7 @@ ionicApp.controller('ExampleController', function($scope, $cordovaLocalNotificat
     $cordovaLocalNotification.schedule([{
       id: 1,
       title: currentEvent.title,
-      text: currentEvent.message,
+      text: currentEvent.description,
       at: currentEvent.datetime,
     },{
       id: 2,
