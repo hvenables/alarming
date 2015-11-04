@@ -1,9 +1,14 @@
 <ion-view>
   <ion-content>
     <div ng-repeat="event in eventsArray">
-      {{event.eventTitle}}
-      {{event.description}}
-      {{event.datetime | date:'medium' }}
+      <div class="list">
+        <a class="item item-avatar" href="#">
+          <img src="/img/alarming.jpg">
+          <h2>{{event.eventTitle}}</h2>
+          <p>{{event.description}}</p>
+          <p>{{event.datetime | date:'medium' }}</p>
+        </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>
