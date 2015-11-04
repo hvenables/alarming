@@ -1,4 +1,4 @@
-var ionicApp = angular.module('alarming', ['ionic', 'ngCordova']);
+var ionicApp = angular.module('alarming', ['ionic', 'ngCordova', 'firebase']);
 
 ionicApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -35,9 +35,18 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.createEvent', {
       url: '/event',
       views: {
-        'home-tab': {
+        'event-tab': {
           templateUrl: 'templates/event.html',
           controller: 'CreateEventCtrl',
+        }
+      }
+    })
+    .state('tabs.myEvents', {
+      url: '/my-events',
+      views: {
+        'my-events-tab': {
+          templateUrl: 'templates/my-events.html',
+          controller: 'myEvents',
         }
       }
     });

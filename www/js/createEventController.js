@@ -1,4 +1,11 @@
-ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification, $state) {
+ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification, $state, $firebase) {
+
+  var ref = new Firebase('https://event-alarm.firebaseio.com/events');
+  var fb = $firebase(ref);
+
+  var syncObject = fb.$asObject();
+
+  syncObject.$bindTo($scope, 'events');
 
   $scope.currentDate = new Date();
   $scope.time = new Date();
@@ -9,9 +16,9 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
     var eventTitle = $scope.eventTitle;
     $scope.eventTitle = null;
     var time = $scope.time;
-    $scope.time = null;
+    $scope.time = new Date();
     var currentDate = $scope.currentDate;
-    $scope.currentDate = null;
+    $scope.currentDate = new Date();
     hours = time.getHours();
     minutes = time.getMinutes();
     currentDate.setHours(hours);
@@ -22,15 +29,16 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
     var currentEvent = {
       eventTitle: eventTitle,
       description: description,
-      datetime: alarmTime,
+      datetime: alarmTime.toJSON(),
     };
-    var events = {};
+
+    fb.$push(currentEvent);
 
     $cordovaLocalNotification.schedule([{
       id: 1,
       title: currentEvent.eventTitle,
       text: currentEvent.description,
-      at: currentEvent.datetime,
+      at: Date.parse(currentEvent.datetime),
     },{
       id: 2,
       title: 'Hello',
