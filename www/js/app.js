@@ -1,6 +1,8 @@
 var ionicApp = angular.module('alarming', ['ionic', 'ngCordova', 'firebase']);
 
-ionicApp.run(function($ionicPlatform) {
+var self = this;
+
+ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -10,6 +12,24 @@ ionicApp.run(function($ionicPlatform) {
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    var ref = new Firebase('https://event-alarm.firebaseio.com/events');
+    ref.on('value', function(events) {
+      self.events = events.val();
+      var eventID = Math.random();
+      for (var key in self.events) {
+        console.log(self.events[key].eventTitle);
+        $cordovaLocalNotification.schedule({
+          id: eventID,
+          title: self.events[key].eventTitle,
+          text: self.events[key].description,
+          at: Date.parse(self.events[key].dateTime),
+          autoCancel: true,
+        }).then(function(result) {
+        });
+      }
+    });
+
   });
 });
 

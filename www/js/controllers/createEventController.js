@@ -9,19 +9,6 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
 
   syncObject.$bindTo($scope, 'events');
 
-  ref.on('value', function(events) {
-    self.events = events.val();
-    var eventID = 1;
-    for (var key in self.events) {
-      $cordovaLocalNotification.schedule([{
-        id: eventID,
-        title: self.events[key].eventTitle,
-        text: self.events[key].description,
-        at: Date.parse(self.events[key].dateTime),
-      }]);
-    }
-  });
-
   self.calcDateTime = function(eventDate, eventTime) {
     eventDate.setHours(eventTime.getHours());
     eventDate.setMinutes(eventTime.getMinutes());
@@ -47,7 +34,6 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
   self.createEvent = function(eventTitle, description, eventDate, eventTime) {
     self.calcDateTime(eventDate, eventTime);
     self.createEventHash(eventTitle, description, eventDateTime);
-    console.log(currentEvent);
     self.createNotification(currentEvent);
   };
 });
