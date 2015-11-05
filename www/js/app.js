@@ -16,19 +16,19 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
     var ref = new Firebase('https://event-alarm.firebaseio.com/events');
     ref.on('value', function(events) {
       self.events = events.val();
-      var eventID = Math.random();
       for (var key in self.events) {
-        console.log(self.events[key].eventTitle);
-        $cordovaLocalNotification.schedule({
-          id: eventID,
-          title: self.events[key].eventTitle,
-          text: self.events[key].description,
-          at: Date.parse(self.events[key].dateTime),
-          autoCancel: true,
-        }).then(function(result) {
-        });
+        notification(self.events[key]);
       }
     });
+
+    function notification(currentEvent) {
+      $cordovaLocalNotification.schedule({
+        id: currentEvent.id,
+        title: currentEvent.eventTitle,
+        text: currentEvent.description,
+        at: Date.parse(currentEvent.dateTime),
+      })
+    }
 
   });
 });

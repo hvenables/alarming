@@ -18,6 +18,7 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
 
   self.createEventHash = function(eventTitle, description, eventDateTime) {
     currentEvent = {
+      id : new Date().valueOf(),
       eventTitle : eventTitle,
       description : description,
       dateTime : eventDateTime.toJSON()
@@ -26,9 +27,7 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
   };
 
   self.createNotification = function(currentEvent){
-
     fb.$push(currentEvent);
-
   };
 
   self.createEvent = function(eventTitle, description, eventDate, eventTime) {
