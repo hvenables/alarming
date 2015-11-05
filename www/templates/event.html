@@ -1,0 +1,22 @@
+<ion-view>
+  <ion-content ng-controller="CreateEventCtrl">
+    <label class="item item-input">
+      <span class="input-label">Title</span>
+      <input type="text" ng-model="eventTitle">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Description</span>
+      <input type="text" ng-model="description">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Date</span>
+      <input type="date" ng-model="currentDate">
+    </label>
+    <label class="item item-input">
+      <span class="input-label">Time</span>
+      <input type="time" ng-model="time">
+    </label>
+      <button class="button button-full button-positive" ng-click="createEvent()" value="Add
+      Notification">Create Event</button>
+  </ion-content>
+</ion-view>
