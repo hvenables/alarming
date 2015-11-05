@@ -29,12 +29,18 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
 
     fb.$push(currentEvent);
 
-    $cordovaLocalNotification.schedule([{
-      id: 1,
-      title: currentEvent.eventTitle,
-      text: currentEvent.description,
-      at: Date.parse(currentEvent.eventDateTime),
-    }]);
+    ref.on('value', function(events) {
+      self.events = events.val();
+      var eventID = 1;
+      for (var key in self.events) {
+        $cordovaLocalNotification.schedule([{
+          id: eventID,
+          title: self.events[key].eventTitle,
+          text: self.events[key].description,
+          at: Date.parse(self.events[key].dateTime),
+        }]);
+      }
+    });
   };
 
   self.createEvent = function(eventTitle, description, eventDate, eventTime) {
