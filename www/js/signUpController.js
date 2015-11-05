@@ -1,4 +1,4 @@
-ionicApp.controller('SignUpCtrl', [ '$rootScope', '$scope', '$state', '$firebaseAuth', function($rootScope, $scope, $state, $firebaseAuth) {
+ionicApp.controller('SignUpCtrl', ['$rootScope', '$scope', '$state', '$firebaseAuth', function($rootScope, $scope, $state, $firebaseAuth) {
 
     var ref = new Firebase('https://blazing-fire-4780.firebaseio.com/alarming');
     $rootScope.auth = $firebaseAuth(ref);

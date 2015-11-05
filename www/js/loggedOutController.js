@@ -2,15 +2,17 @@ ionicApp.controller('LoggedOutCtrl', function($scope, $state, $firebaseAuth) {
 
   var ref = new Firebase('https://blazing-fire-4780.firebaseio.com/alarming');
 
-//$scope.$on('$viewContentLoaded', function() {
-//   //call it here
-//    ref.unauth();
-//    console.log('logged out')
-//});
+  ref.onAuth(function (authData) {
+    if (authData) {
+      console.log('logged in as ' + authData.password.email);
+    } else {
+      console.log('user logged out')
+    }
+  });
 
   $scope.init = function() {
     ref.unauth();
-    console.log('logged out')
+    $state.go('loggedout');
   };
 
   $scope.goToSignIn = function() {
@@ -21,5 +23,4 @@ ionicApp.controller('LoggedOutCtrl', function($scope, $state, $firebaseAuth) {
     $state.go('signup');
   };
 
-  $scope.init();
 });
