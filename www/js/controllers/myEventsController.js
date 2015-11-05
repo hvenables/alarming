@@ -1,11 +1,13 @@
-ionicApp.controller('MyEventsCtrl', function($scope, $firebase) {
+ionicApp.controller('MyEventsController', function($firebase) {
+
+  var self = this;
 
   var ref = new Firebase('https://event-alarm.firebaseio.com/events');
   ref.on('value', function(events) {
-    $scope.eventsArray=[]
-    $scope.events = events.val();
-    for(var key in $scope.events){
-      $scope.eventsArray.push($scope.events[key]);
+    self.eventsArray = [];
+    self.events = events.val();
+    for(var key in self.events){
+      self.eventsArray.push(self.events[key]);
     }
   })
 });

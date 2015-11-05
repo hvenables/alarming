@@ -1,6 +1,8 @@
-ionicApp.controller('SignInCtrl', function($scope, $state) {
+ionicApp.controller('SignInController', function($state) {
 
-  $scope.signIn = function(user) {
+  var self = this;
+
+  self.signIn = function(user) {
     $state.go('tabs.myEvents');
   };
 })

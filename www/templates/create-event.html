@@ -1,5 +1,5 @@
 <ion-view>
-  <ion-content ng-controller="CreateEventCtrl">
+  <ion-content>
     <label class="item item-input">
       <span class="input-label">Title</span>
       <input type="text" ng-model="eventTitle">
@@ -10,13 +10,15 @@
     </label>
     <label class="item item-input">
       <span class="input-label">Date</span>
-      <input type="date" ng-model="currentDate">
+      <input type="date" ng-model="eventDate">
     </label>
     <label class="item item-input">
       <span class="input-label">Time</span>
-      <input type="time" ng-model="time">
+      <input type="time" ng-model="eventTime">
     </label>
-      <button class="button button-full button-positive" ng-click="createEvent()" value="Add
-      Notification">Create Event</button>
+      <button class="button button-full button-positive"
+        ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
+          Create Event
+      </button>
   </ion-content>
 </ion-view>

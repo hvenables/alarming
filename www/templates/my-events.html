@@ -1,12 +1,12 @@
 <ion-view>
   <ion-content>
-    <div ng-repeat="event in eventsArray">
+    <div ng-repeat="event in MyEventsCtrl.eventsArray | orderBy: '-datetime' ">
       <div class="list">
         <a class="item item-avatar" href="#">
           <img src="/img/alarming.jpg">
           <h2>{{event.eventTitle}}</h2>
           <p>{{event.description}}</p>
-          <p>{{event.datetime | date:'medium' }}</p>
+          <p>{{event.dateTime | date:'medium' }}</p>
         </a>
       </div>
     </div>

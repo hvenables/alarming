@@ -1,4 +1,6 @@
-ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotification, $state, $firebase) {
+ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotification, $state, $firebase) {
+
+  var self = this;
 
   var ref = new Firebase('https://event-alarm.firebaseio.com/events');
   var fb = $firebase(ref);
@@ -7,30 +9,23 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
 
   syncObject.$bindTo($scope, 'events');
 
-  $scope.currentDate = new Date();
-  $scope.time = new Date();
+  self.calcDateTime = function(eventDate, eventTime) {
+    eventDate.setHours(eventTime.getHours());
+    eventDate.setMinutes(eventTime.getMinutes());
+    eventDateTime = eventDate;
+    return eventDateTime;
+  };
 
-  $scope.createEvent = function() {
-    var description = $scope.description;
-    $scope.description = null;
-    var eventTitle = $scope.eventTitle;
-    $scope.eventTitle = null;
-    var time = $scope.time;
-    $scope.time = new Date();
-    var currentDate = $scope.currentDate;
-    $scope.currentDate = new Date();
-    hours = time.getHours();
-    minutes = time.getMinutes();
-    currentDate.setHours(hours);
-    currentDate.setMinutes(minutes);
-    currentDate.setSeconds(00);
-    var alarmTime = currentDate;
-
-    var currentEvent = {
-      eventTitle: eventTitle,
-      description: description,
-      datetime: alarmTime.toJSON(),
+  self.createEventHash = function(eventTitle, description, eventDateTime) {
+    currentEvent = {
+      eventTitle : eventTitle,
+      description : description,
+      dateTime : eventDateTime.toJSON()
     };
+    return currentEvent;
+  };
+
+  self.createNotification = function(currentEvent){
 
     fb.$push(currentEvent);
 
@@ -38,7 +33,14 @@ ionicApp.controller('CreateEventCtrl', function($scope, $cordovaLocalNotificatio
       id: 1,
       title: currentEvent.eventTitle,
       text: currentEvent.description,
-      at: Date.parse(currentEvent.datetime),
+      at: Date.parse(currentEvent.eventDateTime),
     }]);
+  };
+
+  self.createEvent = function(eventTitle, description, eventDate, eventTime) {
+    self.calcDateTime(eventDate, eventTime);
+    self.createEventHash(eventTitle, description, eventDateTime);
+    console.log(currentEvent);
+    self.createNotification(currentEvent);
   };
 });

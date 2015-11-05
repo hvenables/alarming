@@ -21,7 +21,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('signin', {
       url: '/sign-in',
       templateUrl: 'templates/sign-in.html',
-      controller: 'SignInCtrl',
+      controller: 'SignInController as SignInCtrl',
   })
   .state('forgotpassword', {
     url: '/forgot-password',
@@ -36,8 +36,8 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     url: '/event',
     views: {
       'event-tab': {
-        templateUrl: 'templates/event.html',
-        controller: 'CreateEventCtrl',
+        templateUrl: 'templates/create-event.html',
+        controller: 'CreateEventController as CreateEventCtrl',
       }
     }
   })
@@ -46,7 +46,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'my-events-tab': {
         templateUrl: 'templates/my-events.html',
-        controller: 'MyEventsCtrl',
+        controller: 'MyEventsController as MyEventsCtrl',
       }
     }
   });
