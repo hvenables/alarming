@@ -1,6 +1,6 @@
 <ion-view>
   <ion-content>
-    <div ng-repeat="(key, event) in MyEventsCtrl.userEvents">
+    <div ng-repeat="(key, event) in MyEventsCtrl.userEvents | orderObjectBy:'dateTime'">
       <div class="list">
         <a class="item item-avatar" ng-href="#/my-event/{{ key }}">
           <img src="img/alarming.jpg">

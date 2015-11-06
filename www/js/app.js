@@ -32,6 +32,21 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
   });
 });
 
+ionicApp.filter('orderObjectBy', function() {
+  return function(items, field, reverse) {
+    var filtered = [];
+    angular.forEach(items, function(item) {
+      filtered.push(item);
+    });
+    filtered.sort(function (a, b) {
+      return (a[field] > b[field] ? 1 : -1);
+    });
+    if(reverse) filtered.reverse();
+    return filtered;
+  };
+});
+
+
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise('/logged-out');
@@ -87,7 +102,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  
+
   .state('myEvent', {
     url: '/my-event/:key',
     templateUrl: 'templates/my-event.html',
