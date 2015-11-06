@@ -2,6 +2,8 @@ ionicApp.controller('LoggedOutController', function($state, $firebaseAuth) {
 
   var self = this;
 
+  self.test = "Hello"
+
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
   self.signOut = function() {

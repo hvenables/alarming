@@ -2,6 +2,8 @@ ionicApp.controller('SignUpController', function($state, $firebaseAuth) {
 
   var self = this;
 
+  self.test = "Hello"
+
   var ref = new Firebase('https://event-alarm.firebaseio.com');
 
   self.signUp = function(user) {

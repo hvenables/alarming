@@ -25,6 +25,8 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     console.log(self.attendeeArray)
   };
 
+  var currentUserId = eventsRef.getAuth();
+
   self.calcDateTime = function(eventDate, eventTime) {
     eventDate.setHours(eventTime.getHours());
     eventDate.setMinutes(eventTime.getMinutes());
@@ -56,4 +58,5 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     self.createNotification(currentEvent);
     $state.go('tabs.myEvents')
   };
+
 });
