@@ -4,11 +4,18 @@ describe('CreateEventController', function() {
 
   var ctrl, $scope;
 
-   // var currentUserId;
-
   jasmine.spyOn(ctrl.currentEvent, 'owner')
   .and
   .returnValue('Bat')
+
+    currentEvent = {
+      id : new Date().valueOf(),
+      // owner: currentUserId.uid,
+      eventTitle : "Bat's Wedding",
+      description : "Bat's big day",
+      dateTime : eventDateTime.toJSON()
+    };
+
 
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
@@ -33,7 +40,7 @@ describe('CreateEventController', function() {
     eventDateTime = new Date(2015, 10, 6, 11, 5, 0, 000);
     eventTitle = "Bat's wedding";
     description = "Bat's big day";
-    expect(ctrl.createEventHash(eventTitle, description, eventDateTime)).toEqual("Bat's big day")
+    expect(ctrl.createEventHash(eventTitle, description, eventDateTime)).toEqual(currentEvent)
   });
 
 });
