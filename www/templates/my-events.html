@@ -1,12 +1,13 @@
 <ion-view view-title="My-Events">
   <ion-content>
-    <div ng-repeat="(key, event) in MyEventsCtrl.events | orderBy: 'dateTime' ">
+    <div ng-repeat="(key, event) in MyEventsCtrl.userEvents">
       <div class="list">
         <a class="item item-avatar" ng-href="#/my-event/{{ key }}">
           <img src="img/alarming.jpg">
-          <h2>{{event.eventTitle}}</h2>
-          <p>{{event.description}}</p>
-          <p>{{event.dateTime | date:'medium' }}</p>
+          <h2>{{ event.eventTitle }}</h2>
+          <p>{{ event.description }}</p>
+          <p>{{ event.dateTime | date:'medium' }}</p>
+          <p>{{ event.attendees }}</p>
         </a>
       </div>
     </div>

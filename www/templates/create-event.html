@@ -16,9 +16,15 @@
       <span class="input-label">Time</span>
       <input type="time" ng-model="eventTime">
     </label>
-      <button class="button button-full button-positive"
-        ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
-          Create Event
-      </button>
+
+    <span class="input-label">Attendees</span>
+    <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
+      <button type="button" ng-click="CreateEventCtrl.addToAttendeeArray(key)"> {{ user.email }}</button>
+    </div>
+
+    <button class="button button-full button-positive"
+      ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
+        Create Event
+    </button>
   </ion-content>
 </ion-view>
