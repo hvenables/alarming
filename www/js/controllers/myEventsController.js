@@ -7,13 +7,7 @@ ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotif
     self.eventsArray = [];
     self.events = events.val();
     for (var key in self.events) {
-      console.log('a');
       self.eventsArray.push(self.events[key]);
     }
   });
-
-  // ref.on('value', function(eventsObject) {
-  //   self.events = eventsObject.exportVal();
-  // })
-  // console.log(self.events);
 });

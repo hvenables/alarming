@@ -35,7 +35,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/sign-in');
+  //$urlRouterProvider.otherwise('/sign-in');
 
   $stateProvider
   .state('signin', {
@@ -69,5 +69,10 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
         controller: 'MyEventsController as MyEventsCtrl',
       }
     }
+  })
+  .state('myEvent', {
+    url: '/my-event/:key',
+    templateUrl: 'templates/my-event.html',
+    controller: 'MyEventsController as MyEventsCtrl',
   });
 });
