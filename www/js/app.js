@@ -13,8 +13,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
       StatusBar.styleDefault();
     }
 
-    var ref = new Firebase('https://event-alarm.firebaseio.com/events');
-    ref.on('value', function(events) {
+    var ref = new Firebase('https://event-alarm.firebaseio.com/');
+    ref.child('events').on('value', function(events) {
       self.events = events.val();
       for (var key in self.events) {
         notification(self.events[key]);
@@ -29,7 +29,6 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
         at: Date.parse(currentEvent.dateTime),
       })
     }
-
   });
 });
 
@@ -54,7 +53,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('signup', {
     url: '/sign-up',
     templateUrl: 'templates/sign-up.html',
-    controller: 'SignUpCtrl',
+    controller: 'SignUpController as SignUpCtrl',
   })
 
   .state('forgotpassword', {

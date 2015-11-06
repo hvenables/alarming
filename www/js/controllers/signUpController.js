@@ -1,6 +1,8 @@
-ionicApp.controller('SignUpCtrl', function($state, $firebaseAuth) {
+ionicApp.controller('SignUpController', function($state, $firebaseAuth) {
 
-  var ref = new Firebase('https://blazing-fire-4780.firebaseio.com/alarming');
+  var self = this;
+
+  var ref = new Firebase('https://event-alarm.firebaseio.com');
 
   self.signUp = function(user) {
     ref.createUser({
@@ -18,12 +20,12 @@ ionicApp.controller('SignUpCtrl', function($state, $firebaseAuth) {
 
   function signupHandler(user) {
     return function (error, userData) {
-      console.log(userData.uid);
       if (error) {
-        console.log("Error creating user:", error);
+        alert("Error creating user:", error);
       }
       else {
-        console.log("Successfully created user account with uid:", userData.uid);
+        alert("Successfully created user account with uid:", userData.uid);
+        saveNewUser(userData.uid, user.email);
         logIn(user)
       }
     }
@@ -31,11 +33,16 @@ ionicApp.controller('SignUpCtrl', function($state, $firebaseAuth) {
 
   function authHandler(error, authData) {
     if (error) {
-      console.log(error)
+      alert(error)
     }
     else {
       $state.go('tabs.myEvents');
     }
   };
 
+  function saveNewUser(userId, userEmail) {
+    ref.child('users/'+userId).set({
+      email: userEmail
+    });
+  };
 });

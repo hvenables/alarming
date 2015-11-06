@@ -2,12 +2,7 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
 
   var self = this;
 
-  var ref = new Firebase('https://event-alarm.firebaseio.com/events');
-  var fb = $firebase(ref);
-
-  var syncObject = fb.$asObject();
-
-  syncObject.$bindTo($scope, 'events');
+  var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
 
   self.calcDateTime = function(eventDate, eventTime) {
     eventDate.setHours(eventTime.getHours());
@@ -19,6 +14,7 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
   self.createEventHash = function(eventTitle, description, eventDateTime) {
     currentEvent = {
       id : new Date().valueOf(),
+      owner: eventsRef.getAuth().uid,
       eventTitle : eventTitle,
       description : description,
       dateTime : eventDateTime.toJSON()
@@ -27,12 +23,13 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
   };
 
   self.createNotification = function(currentEvent){
-    fb.$push(currentEvent);
+    eventsRef.push(currentEvent);
   };
 
   self.createEvent = function(eventTitle, description, eventDate, eventTime) {
     self.calcDateTime(eventDate, eventTime);
     self.createEventHash(eventTitle, description, eventDateTime);
     self.createNotification(currentEvent);
+    $state.go('tabs.myEvents')
   };
 });
