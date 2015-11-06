@@ -87,6 +87,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  
   .state('myEvent', {
     url: '/my-event/:key',
     templateUrl: 'templates/my-event.html',

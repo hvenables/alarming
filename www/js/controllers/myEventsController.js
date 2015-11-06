@@ -5,6 +5,16 @@ ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotif
   var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
   var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
 
+  var eventId = window.location.hash.slice(11);
+  var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
+
+  eventRef.on("value", getUserId);
+
+  function getUserId(snapshot) {
+    self.event = snapshot.val();
+    console.log(self.event);
+  };
+
   usersRef.onAuth(function () {
     var user = usersRef.getAuth();
     if (user) {
@@ -21,5 +31,4 @@ ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotif
       });
     }
   };
-
 });
