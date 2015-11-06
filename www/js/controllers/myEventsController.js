@@ -2,6 +2,8 @@ ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotif
 
   var self = this;
 
+  self.test = "Hello"
+
   var ref = new Firebase('https://event-alarm.firebaseio.com/events');
   ref.on('value', function(events) {
     self.eventsArray = [];

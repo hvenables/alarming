@@ -1,4 +1,4 @@
-describe('SignUpController', function() {
+describe('LoggedOutController', function() {
 
   beforeEach (module('alarming'));
 
@@ -6,10 +6,11 @@ describe('SignUpController', function() {
 
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
-    ctrl = $controller('SignUpController', { $scope:$scope });
+    ctrl = $controller('LoggedOutController', { $scope:$scope });
   }));
 
   it ('testing the test file', function() {
     expect(ctrl.test).toEqual('Hello');
   });
+
 });
