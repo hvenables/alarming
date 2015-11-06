@@ -2,7 +2,7 @@ ionicApp.controller('SignInController', function($state, $firebaseAuth) {
 
   var self = this;
 
-  var ref = new Firebase('https://blazing-fire-4780.firebaseio.com/alarming');
+  var ref = new Firebase('https://event-alarm.firebaseio.com/events');
 
   self.signIn = function (user) {
     ref.authWithPassword({
