@@ -5,6 +5,8 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
   var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
   var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
 
+  self.models = {};
+  self.attendeeArray = [];
   self.usersHash = $firebaseObject(usersRef);
 
   eventsRef.on('child_added', function (snapshot) {
@@ -13,6 +15,11 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     newNode[snapshot.key()] = snapshot.val().eventTitle;
     ownerRef.child('events').update(newNode);
   });
+
+  self.addToAttendeeArray = function(name){
+    self.attendeeArray.push(name);
+    console.log(self.attendeeArray)
+  };
 
   self.calcDateTime = function(eventDate, eventTime) {
     eventDate.setHours(eventTime.getHours());
@@ -28,7 +35,8 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
       owner: currentUserId.uid,
       eventTitle : eventTitle,
       description : description,
-      dateTime : eventDateTime.toJSON()
+      dateTime : eventDateTime.toJSON(),
+      attendees: self.attendeeArray
     };
     return currentEvent;
   };
