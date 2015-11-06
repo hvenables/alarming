@@ -3,6 +3,14 @@ ionicApp.controller('CreateEventController', function($scope, $cordovaLocalNotif
   var self = this;
 
   var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
+  var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+
+  eventsRef.on('child_added', function (snapshot) {
+    var ownerRef = usersRef.child(snapshot.val().owner);
+    var newNode = {};
+    newNode[snapshot.key()] = snapshot.val().eventTitle;
+    ownerRef.child('events').update(newNode);
+  });
 
   self.calcDateTime = function(eventDate, eventTime) {
     eventDate.setHours(eventTime.getHours());
