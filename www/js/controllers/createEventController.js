@@ -11,9 +11,13 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
 
   eventsRef.on('child_added', function (snapshot) {
     var ownerRef = usersRef.child(snapshot.val().owner);
+    var attendeeArray = snapshot.val().attendees;
     var newNode = {};
     newNode[snapshot.key()] = snapshot.val().eventTitle;
     ownerRef.child('events').update(newNode);
+    for (var i = 0; i < attendeeArray.length; i++) {
+      usersRef.child(attendeeArray[i] + '/events').update(newNode);
+    }
   });
 
   self.addToAttendeeArray = function(name){
@@ -38,6 +42,7 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
       dateTime : eventDateTime.toJSON(),
       attendees: self.attendeeArray
     };
+    self.attendeeArray = [];
     return currentEvent;
   };
 

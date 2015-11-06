@@ -1,4 +1,4 @@
-ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotification) {
+ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLocalNotification) {
 
   var self = this;
 
@@ -8,10 +8,13 @@ ionicApp.controller('MyEventsController', function($firebase, $cordovaLocalNotif
   var eventId = window.location.hash.slice(11);
   var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
 
+  self.event = $firebaseObject(eventRef)
   eventRef.on("value", getUserId);
 
   function getUserId(snapshot) {
     self.event = snapshot.val();
+    console.log('getUserId called');
+    console.log(self.event);
   };
 
   usersRef.onAuth(function () {
