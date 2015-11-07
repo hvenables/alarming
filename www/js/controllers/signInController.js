@@ -1,21 +1,14 @@
 ionicApp.controller('SignInController', function($state, $firebaseAuth) {
 
   var self = this;
-
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
-  self.signIn = function(user) {
-    ref.authWithPassword({
-      email: user.email,
-      password: user.password
-    }, authHandler);
+  self.signIn = function (user) {
+    $firebaseAuth(ref).$authWithPassword(user).then(function () {
+      $state.go('tabs.myEvents');
+    }).catch(function (error) {
+      alert(error);
+    });
   };
 
-  function authHandler(error, authData) {
-    if (error) {
-      alert(error)
-    } else {
-      $state.go('tabs.myEvents');
-    }
-  };
 });
