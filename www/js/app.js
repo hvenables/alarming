@@ -56,31 +56,31 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('loggedout', {
      url: '/logged-out',
      templateUrl: 'templates/logged-out.html',
-     controller: 'LoggedOutController as LoggedOutCtrl',
+     controller: 'LoggedOutController as LoggedOutCtrl'
  })
 
   .state('signin', {
     url: '/sign-in',
     templateUrl: 'templates/sign-in.html',
-    controller: 'SignInController as SignInCtrl',
+    controller: 'SignInController as signInCtrl'
   })
 
   .state('signup', {
     url: '/sign-up',
     templateUrl: 'templates/sign-up.html',
-    controller: 'SignUpController as SignUpCtrl',
+    controller: 'SignUpController as signUpCtrl'
   })
 
   .state('forgotpassword', {
     url: '/forgot-password',
-    templateUrl: 'templates/forgot-password.html',
+    templateUrl: 'templates/forgot-password.html'
   })
 
   .state('tabs', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html',
-    controller: 'LoggedOutController as LoggedOutCtrl'
+    controller: 'TabsController as tabsCtrl'
   })
 
   .state('tabs.createEvent', {
@@ -88,7 +88,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'event-tab': {
         templateUrl: 'templates/create-event.html',
-        controller: 'CreateEventController as CreateEventCtrl',
+        controller: 'CreateEventController as CreateEventCtrl'
       }
     }
   })
@@ -98,7 +98,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'my-events-tab': {
         templateUrl: 'templates/my-events.html',
-        controller: 'MyEventsController as MyEventsCtrl',
+        controller: 'MyEventsController as MyEventsCtrl'
       }
     }
   })
@@ -106,6 +106,6 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('myEvent', {
     url: '/my-event/:key',
     templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as MyEventsCtrl',
+    controller: 'MyEventsController as MyEventsCtrl'
   });
 });
