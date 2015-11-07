@@ -1,4 +1,4 @@
-ionicApp.controller('SignInController', function($state, $firebaseAuth) {
+ionicApp.controller('SignInController', function ($state, $firebaseAuth) {
 
   var self = this;
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
