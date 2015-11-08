@@ -17,9 +17,14 @@
       <input type="time" ng-model="eventTime">
     </label>
 
-    <span class="input-label">Attendees</span>
-    <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
-      <button type="button" ng-click="CreateEventCtrl.addToAttendeeArray(key)"> {{ user.email }}</button>
+    <span class="input-label"><strong>Select Attendees</strong></span>
+    <div class="form-group">
+      <div class="radio" ng-repeat="(key, user) in CreateEventCtrl.usersHash">
+        <label>
+          <input type="radio" ng-click="CreateEventCtrl.addToAttendeeArray(key)">
+          {{ user.email }}
+        </label>
+      </div>
     </div>
 
     <button class="button button-full button-positive"
