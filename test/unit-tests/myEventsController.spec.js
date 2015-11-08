@@ -12,4 +12,11 @@ describe('MyEventsController', function() {
   it ('testing the test file', function() {
     expect(ctrl.test).toEqual('Hello');
   });
+
+  // it ('correctly identifies the users events', function() {
+  //   expect(ctrl.grabUserEvents).toEqual("Bats Wedding")
+  // })
+
+
+
 });

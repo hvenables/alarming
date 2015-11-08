@@ -17,6 +17,7 @@ ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLoca
     self.event = snapshot.val();
     console.log('getUserId called');
     console.log(self.event);
+    console.log(self.event.owner)
   };
 
   usersRef.onAuth(function () {
