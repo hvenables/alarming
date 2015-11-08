@@ -1,10 +1,9 @@
-ionicApp.controller('TabsController', function ($state, $firebaseAuth) {
+ionicApp.controller('TabsController', function (authService, $state) {
 
   var self = this;
-  var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
   self.signOut = function () {
-    $firebaseAuth(ref).$unauth();
+    authService.logOut();
     $state.go('loggedout');
   };
 

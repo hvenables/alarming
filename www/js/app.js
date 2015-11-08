@@ -56,7 +56,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('loggedout', {
      url: '/logged-out',
      templateUrl: 'templates/logged-out.html',
-     controller: 'LoggedOutController as LoggedOutCtrl'
+     controller: 'LoggedOutController as loggedOutCtrl'
  })
 
   .state('signin', {
