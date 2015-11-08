@@ -22,8 +22,12 @@ describe('Alarming', function() {
     element(by.id('signin')).click();
     element(by.model('user.email')).sendKeys('harry@gmail.com');
     element(by.model('user.password')).sendKeys('harry');
-    element(by.id('button')).click();
-    browser.pause()
+    element(by.id('button')).click()
+    browser.driver.wait(function() {
+      return browser.driver.getCurrentUrl().then(function(url) {
+        return (/my-events/).test(url);
+      })
+    })
     expect(browser.getTitle()).toEqual('My-Events');
   });
 });
