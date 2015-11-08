@@ -28,14 +28,17 @@
     <script src="js/controllers/loggedOutController.js"></script>
     <script src="js/controllers/createEventController.js"></script>
     <script src="js/controllers/myEventsController.js"></script>
+    <script src="js/controllers/mapController.js"></script>
+    <script src="js/directives/mapDirective.js"></script>
 
   </head>
   <body ng-app="alarming">
     <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Alarming</h1>
-      </ion-header-bar>
+      <ion-nav-bar class="bar-positive">
+        <ion-nav-back-button></ion-nav-back-button>
+      </ion-nav-bar>
       <ion-nav-view></ion-nav-view>
     </ion-pane>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCG6BfM_A_vPW2CAnXIy1Iexd7rQ8oXLsg&sensor=true"></script>
   </body>
 </html>

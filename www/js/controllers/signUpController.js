@@ -26,7 +26,6 @@ ionicApp.controller('SignUpController', function($state, $firebaseAuth) {
         alert("Error creating user:", error);
       }
       else {
-        alert("Successfully created user account with uid:", userData.uid);
         saveNewUser(userData.uid, user.email);
         logIn(user)
       }

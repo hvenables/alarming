@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title="Create-Event">
   <ion-content>
     <label class="item item-input">
       <span class="input-label">Title</span>
@@ -22,7 +22,7 @@
       <button type="button" ng-click="CreateEventCtrl.addToAttendeeArray(key)"> {{ user.email }}</button>
     </div>
 
-    <button id="button" class="button button-full button-positive"
+    <button id="create-button" class="button button-full button-positive"
       ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
         Create Event
     </button>
