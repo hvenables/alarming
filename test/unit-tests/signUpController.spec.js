@@ -1,6 +1,6 @@
 describe('SignUpController', function() {
 
-  beforeEach (module('alarming'));
+  beforeEach (angular.mock.module('alarming'));
 
   var ctrl, $scope;
 
@@ -9,7 +9,8 @@ describe('SignUpController', function() {
     ctrl = $controller('SignUpController', { $scope:$scope });
   }));
 
-  it ('testing the test file', function() {
-    expect(ctrl.test).toEqual('Hello');
-  });
+  // it ('testing the test file', function() {
+  //   expect(ctrl.test).toEqual('Hello');
+  // });
+
 });

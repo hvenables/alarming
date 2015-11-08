@@ -1,6 +1,6 @@
 describe('MyEventsController', function() {
 
-  beforeEach (module('alarming'));
+  beforeEach (angular.mock.module('alarming'));
 
   var ctrl, $scope;
 
@@ -9,9 +9,9 @@ describe('MyEventsController', function() {
     ctrl = $controller('MyEventsController', { $scope:$scope });
   }));
 
-  it ('testing the test file', function() {
-    expect(ctrl.test).toEqual('Hello');
-  });
+  // it ('testing the test file', function() {
+  //   expect(ctrl.test).toEqual('Hello');
+  // });
 
   // it ('correctly identifies the users events', function() {
   //   expect(ctrl.grabUserEvents).toEqual("Bats Wedding")

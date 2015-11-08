@@ -1,5 +1,5 @@
 describe('CreateEventController', function() {
-  beforeEach(module('alarming'));
+  beforeEach(angular.mock.module('alarming'));
 
   var ctrl, $scope;
 
@@ -25,7 +25,7 @@ describe('CreateEventController', function() {
   it ('should have a time after function is called', function() {
     eventDate = new Date(2015, 10, 6, 2, 3, 0, 000);
     eventTime = new Date(1970, 10, 1, 11, 5, 0, 000);
-    expect(ctrl.calcDateTime(eventDate, eventTime)).toEqual(new Date(2015, 10, 6, 11, 5, 0, 000))
+    expect(ctrl.calcDateTime(eventDate, eventTime)).toEqual(new Date(2015, 10, 6, 11, 5, 0, 000));
   });
 
   it('should not have an event before one is created', function() {
@@ -41,19 +41,18 @@ describe('CreateEventController', function() {
   //   expect(attendeeArray).toEqual(["Bat"])
   // });
 
-  // it ('should be able to create an event', function() {
-  //   spyOn(currentEvent, 'owner').and.returnValue('Bat')
-  //   eventDateTime = new Date(2015, 10, 6, 11, 5, 0, 000);
-  //   eventTitle = "Bat's wedding";
-  //   description = "Bat's big day";
-  //   expect(ctrl.createEventHash(eventTitle, description, eventDateTime)).toEqual(currentEvent)
+  // // it ('should be able to create an event', function() {
+  // //   spyOn(currentEvent, 'owner').and.returnValue('Bat')
+  // //   eventDateTime = new Date(2015, 10, 6, 11, 5, 0, 000);
+  // //   eventTitle = "Bat's wedding";
+  // //   description = "Bat's big day";
+  // //   expect(ctrl.createEventHash(eventTitle, description, eventDateTime)).toEqual(currentEvent)
+  // // });
+  // describe('attendeeArray', function() {
+  //   it('should be array', function() {
+  //     expect(ctrl.attendeeArray).toBeUndefined;
+  //     expect(ctrl.attendeeArray).toEqual("bat")
+  //   });
   // });
-  describe('attendeeArray', function() {
-
-    it('should be array', function() {
-      // expect(ctrl.attendeeArray).toBeUndefined;
-      expect(ctrl.attendeeArray).toEqual("bat")
-    });
-  });
 
 });
