@@ -103,9 +103,13 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('myEvent', {
+  .state('tabs.myEvent', {
     url: '/my-event/:key',
-    templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as MyEventsCtrl',
+    views: {
+      'my-events-tab': {
+      templateUrl: 'templates/my-event.html',
+      controller: 'MyEventsController as MyEventsCtrl',
+      }
+    }
   });
 });

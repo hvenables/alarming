@@ -10,11 +10,11 @@
     </label>
     <label class="item item-input">
       <span class="input-label">Date</span>
-      <input type="date" ng-model="eventDate">
+      <input id="date" type="date" ng-model="eventDate">
     </label>
     <label class="item item-input">
       <span class="input-label">Time</span>
-      <input type="time" ng-model="eventTime">
+      <input id="time" type="time" ng-model="eventTime">
     </label>
 
     <span class="input-label">Attendees</span>
@@ -22,7 +22,7 @@
       <button type="button" ng-click="CreateEventCtrl.addToAttendeeArray(key)"> {{ user.email }}</button>
     </div>
 
-    <button class="button button-full button-positive"
+    <button id="button" class="button button-full button-positive"
       ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
         Create Event
     </button>

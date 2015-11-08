@@ -7,7 +7,7 @@ ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLoca
   var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
   var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
 
-  var eventId = window.location.hash.slice(11);
+  var eventId = window.location.hash.slice(15);
   var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
 
   self.event = $firebaseObject(eventRef)
