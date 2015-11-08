@@ -2,8 +2,6 @@ ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLoca
 
   var self = this;
 
-  self.test = "Hello"
-
   var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
   var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
 
@@ -15,8 +13,6 @@ ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLoca
 
   function getUserId(snapshot) {
     self.event = snapshot.val();
-    console.log('getUserId called');
-    console.log(self.event);
   };
 
   usersRef.onAuth(function () {
