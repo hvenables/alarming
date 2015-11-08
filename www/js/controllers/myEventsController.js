@@ -1,24 +1,10 @@
-ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLocalNotification) {
+ionicApp.controller('MyEventsController', function($firebaseAuth, $firebaseObject, $cordovaLocalNotification) {
 
   var self = this;
+  var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
-  self.test = "Hello"
-
-  var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
-  var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
-
-  var eventId = window.location.hash.slice(11);
-  var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
-
-  self.event = $firebaseObject(eventRef)
-  eventRef.on("value", getUserId);
-
-  function getUserId(snapshot) {
-    self.event = snapshot.val();
-    console.log('getUserId called');
-    console.log(self.event);
-    console.log(self.event.owner)
-  };
+  var usersRef = ref.child('users');
+  var eventsRef = ref.child('events');
 
   usersRef.onAuth(function () {
     var user = usersRef.getAuth();
@@ -36,4 +22,17 @@ ionicApp.controller('MyEventsController', function($firebaseObject, $cordovaLoca
       });
     }
   };
+
+  var eventId = window.location.hash.slice(11);
+  var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
+
+  self.event = $firebaseObject(eventRef)
+  eventRef.on("value", getUserId);
+
+  function getUserId(snapshot) {
+    self.event = snapshot.val();
+    console.log('getUserId called');
+    console.log(self.event);
+  };
+
 });
