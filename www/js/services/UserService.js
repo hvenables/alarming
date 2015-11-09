@@ -15,6 +15,9 @@ function UserService($firebaseAuth, $firebaseArray) {
       self.userEvents2 = $firebaseArray(self.userEventsRef);
       self.userEvents2.$loaded(function (data) {
         console.log(data)
+        angular.forEach(data, function(value, key) {
+          console.log(key, value);
+       });
       });
       self.userEvents2.$watch(function (thing) {
         for (var userEvent of self.userEvents2) {

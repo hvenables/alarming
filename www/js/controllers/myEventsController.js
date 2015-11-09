@@ -4,17 +4,9 @@ ionicApp.controller('MyEventsController', function (UserService, $firebaseObject
 
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
-  self.userEvents2 = UserService.userEvents2;
-
-  self.userEvents3 = {
-    key0: {eventTitle: 'title0'},
-    key1: {eventTitle: 'title1'},
-    key2: {eventTitle: 'title2'},
-  };
-
   self.userEvents = function () {
     console.log('userEvents called')
-    return UserService.userEvents;
+    return UserService.userEvents2;
   };
 
   var eventsRef = ref.child('events');
@@ -26,8 +18,6 @@ ionicApp.controller('MyEventsController', function (UserService, $firebaseObject
 
   function getUserId(snapshot) {
     self.event = snapshot.val();
-    // console.log('getUserId:');
-    // console.log(self.event);
   };
 
 });
