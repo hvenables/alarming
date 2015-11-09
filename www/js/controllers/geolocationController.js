@@ -2,22 +2,26 @@ ionicApp.controller('CreateEventController', function($cordovaGeolocation) {
 
   var self = this;
 
-  self.distance = "";
-  self.ownLat = "";
-  self.ownLong = "";
+  var currentUserId = eventsRef.getAuth();
+  var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
 
   var posOptions = {timeout: 5000, enableHighAccuracy: true};
 
-  $interval(function(){
-   $cordovaGeolocation.getCurrentPosition(posOptions)
-   .then(function(position){
-                var lat  = position.coords.latitude;
-                self.ownLat = lat;
-                var long = position.coords.longitude;
-                self.ownLong = long;
-                var newLocation = {'lon': long, 'lat': lat };
-                console.log(newLocation);
+  self.getLocation = function(){
+    $interval(function(){
+     $cordovaGeolocation.getCurrentPosition(posOptions)
+     .then(function(position){
+                  var lat  = position.coords.latitude;
+                  var long = position.coords.longitude;
+                  location = [lat, long];
+                  self.updateLocation(location);
+      })
+    }, 10000);
+  }
 
-    })
-  }, 10000);
+  self.updateLocation = function(location) {
+    usersRef.child(currentUserId).set({
+      location: location
+    });
+  };
 }
