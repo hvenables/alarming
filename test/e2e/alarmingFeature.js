@@ -29,7 +29,7 @@ describe('Alarming', function() {
 
   // it('has a sign up page', function() {
   //   element(by.id('signup')).click();
-  //   element(by.model('user.email')).sendKeys('testing@protractor.com');
+  //   element(by.model('user.email')).sendKeys('testing123@protractor.com');
   //   element(by.model('user.password')).sendKeys('testingtesting123');
   //   element(by.id('button')).click();
   //   browser.driver.wait(function() {
@@ -59,7 +59,14 @@ describe('Alarming', function() {
     element.all(by.repeater('(key, user) in CreateEventCtrl.usersHash')).get(6).click();
     //element(by.xpath('//button[@class="button.button-full.button-positive"][0]')).click();
     //element(by.xpath('//button[@class="button" and contains(., "Create Event")][0]')).click();
-    // element(by.id('button')).click();
+    element(by.id('create-button')).click();
+    // browser.driver.wait(function() {
+      // return browser.driver.getCurrentUrl().then(function(url) {
+        // return (/my-events/).test(url);
+      // });
+    // });
+    browser.pause();
+    expect(browser.getTitle()).toEqual('My-Events');
     // browser.executeScript('window.scrollTo(0,10000);').then(function () {
       // var button = ($('[ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)"].button.button-full.button-positive'));
       // button.click();
