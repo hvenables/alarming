@@ -22,7 +22,6 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
 
   self.addToAttendeeArray = function(name){
     self.attendeeArray.push(name);
-    console.log(self.attendeeArray)
   };
 
   var currentUserId = eventsRef.getAuth();

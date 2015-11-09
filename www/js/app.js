@@ -2,7 +2,7 @@ var ionicApp = angular.module('alarming', ['ionic', 'ngCordova', 'firebase']);
 
 var self = this;
 
-ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
+ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cordovaGeolocation) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {

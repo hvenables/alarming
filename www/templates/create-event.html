@@ -17,9 +17,13 @@
       <input id="time" type="time" ng-model="eventTime">
     </label>
 
-    <span class="input-label">Attendees</span>
+    <br>
+
+    <span class="input-label"><strong>Select Attendees</strong></span>
     <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
-      <button type="button" ng-click="CreateEventCtrl.addToAttendeeArray(key)"> {{ user.email }}</button>
+      <ion-checkbox ng-click="CreateEventCtrl.addToAttendeeArray(key)">
+        {{ user.email }}
+      </ion-checkbox>
     </div>
 
     <button id="create-button" class="button button-full button-positive"
