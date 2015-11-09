@@ -3,8 +3,8 @@
     <div class="list card">
       <div class="item item-avatar">
         <img src="img/alarming.jpg">
-        <h2>{{MyEventsCtrl.event.eventTitle}}</h2>
-        <p>{{MyEventsCtrl.event.dateTime | date:'medium'}}</p>
+        <h2>{{viewEventCtrl.userEvent.eventTitle}}</h2>
+        <p>{{viewEventCtrl.userEvent.dateTime  | date:'d MMM yyyy, HH:mm' }}</p>
       </div>
 
       <div class="item item-body">
@@ -16,8 +16,8 @@
         </div>
       </div>
         <div class="item item-body">
-          <p>{{MyEventsCtrl.event.description}}</p>
-          <p>{{MyEventsCtrl.event.attendees}}</p>
+          <p>{{viewEventCtrl.userEvent.description}}</p>
+          <p>{{viewEventCtrl.userEvent.attendees}}</p>
         </div>
     </div>
   </ion-content>
