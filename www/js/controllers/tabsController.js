@@ -4,7 +4,7 @@ function TabsController(AuthService, $state) {
 
   this.signOut = function () {
     AuthService.logOut();
-    $state.go('loggedout');
+    $state.go('landingpage');
   };
 
 }

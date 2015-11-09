@@ -49,14 +49,14 @@ ionicApp.filter('orderObjectBy', function() {
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/logged-out');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
 
-  .state('loggedout', {
-     url: '/logged-out',
-     templateUrl: 'templates/logged-out.html',
-     controller: 'LoggedOutController as loggedOutCtrl'
+  .state('landingpage', {
+     url: '/',
+     templateUrl: 'templates/landing-page.html',
+     controller: 'LandingPageController as landingPageCtrl'
  })
 
   .state('signin', {
@@ -103,9 +103,9 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('myEvent', {
-    url: '/my-event/:key',
-    templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as myEventsCtrl'
+  .state('viewevent', {
+    url: '/view-event/:key',
+    templateUrl: 'templates/view-event.html',
+    controller: 'ViewEventController as viewEventCtrl'
   });
 });
