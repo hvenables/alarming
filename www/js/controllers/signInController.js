@@ -1,13 +1,13 @@
-ionicApp.controller('SignInController', function (authService, $state) {
+ionicApp.controller('SignInController', SignInController);
 
-  var self = this;
+function SignInController(AuthService, $state) {
 
-  self.signIn = function (user) {
-    authService.logIn(user).then(function () {
+  this.signIn = function (user) {
+    AuthService.logIn(user).then(function () {
       $state.go('tabs.myEvents');
     }).catch(function (error) {
       alert(error);
     });
   };
 
-});
+}

@@ -88,7 +88,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'event-tab': {
         templateUrl: 'templates/create-event.html',
-        controller: 'CreateEventController as CreateEventCtrl'
+        controller: 'CreateEventController as createEventCtrl'
       }
     }
   })
@@ -98,7 +98,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'my-events-tab': {
         templateUrl: 'templates/my-events.html',
-        controller: 'MyEventsController as MyEventsCtrl'
+        controller: 'MyEventsController as myEventsCtrl'
       }
     }
   })
@@ -106,6 +106,6 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('myEvent', {
     url: '/my-event/:key',
     templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as MyEventsCtrl'
+    controller: 'MyEventsController as myEventsCtrl'
   });
 });

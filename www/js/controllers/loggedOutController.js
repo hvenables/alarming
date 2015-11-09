@@ -1,9 +1,9 @@
-ionicApp.controller('LoggedOutController', function ($state) {
+ionicApp.controller('LoggedOutController', LoggedOutController);
 
-  var self = this;
+function LoggedOutController($state) {
 
-  self.go = function (state) {
+  this.go = function (state) {
     $state.go(state);
   };
 
-});
+}

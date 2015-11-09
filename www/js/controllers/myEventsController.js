@@ -1,28 +1,23 @@
-ionicApp.controller('MyEventsController', function($firebaseAuth, $firebaseObject, $cordovaLocalNotification) {
+ionicApp.controller('MyEventsController', function (UserService, $firebaseObject) {
 
   var self = this;
+
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
-  var usersRef = ref.child('users');
-  var eventsRef = ref.child('events');
+  self.userEvents2 = UserService.userEvents2;
 
-  usersRef.onAuth(function () {
-    var user = usersRef.getAuth();
-    if (user) {
-      usersRef.child(user.uid).on('value', grabUserEvents);
-      usersRef.child(user.uid).on('child_changed', grabUserEvents);
-    }
-  });
-
-  function grabUserEvents(snapshot) {
-    self.userEvents = snapshot.val().events;
-    for (var eventId in self.userEvents) {
-      eventsRef.child(eventId).once('value', function (snap2) {
-        self.userEvents[eventId] = snap2.val();
-      });
-    }
+  self.userEvents3 = {
+    key0: {eventTitle: 'title0'},
+    key1: {eventTitle: 'title1'},
+    key2: {eventTitle: 'title2'},
   };
 
+  self.userEvents = function () {
+    console.log('userEvents called')
+    return UserService.userEvents;
+  };
+
+  var eventsRef = ref.child('events');
   var eventId = window.location.hash.slice(11);
   var eventRef = new Firebase('https://event-alarm.firebaseio.com/events/'+ eventId);
 
@@ -31,8 +26,8 @@ ionicApp.controller('MyEventsController', function($firebaseAuth, $firebaseObjec
 
   function getUserId(snapshot) {
     self.event = snapshot.val();
-    console.log('getUserId called');
-    console.log(self.event);
+    // console.log('getUserId:');
+    // console.log(self.event);
   };
 
 });
