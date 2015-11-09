@@ -1,8 +1,24 @@
-<ion-view>
+<ion-view view-title="{{MyEventsCtrl.event.eventTitle}}">
   <ion-content>
-    <h1>{{MyEventsCtrl.event.eventTitle}}</h1>
-    <strong>{{MyEventsCtrl.event.dateTime}}</strong>
-    <p>{{MyEventsCtrl.event.description}}</p>
-    <p>{{MyEventsCtrl.event.attendees}}</p>
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/alarming.jpg">
+        <h2>{{MyEventsCtrl.event.eventTitle}}</h2>
+        <p>{{MyEventsCtrl.event.dateTime | date:'medium'}}</p>
+      </div>
+
+      <div class="item item-body">
+        <div id="map" ng-controller="MapCtrl">
+          <ion-content scroll="false">
+            <map on-create="mapCreated(map)"></map>
+          </ion-content>
+            <a id="locate" ng-click="centerOnMe()" class="button button-icon icon ion-navigate"></a>
+        </div>
+      </div>
+        <div class="item item-body">
+          <p>{{MyEventsCtrl.event.description}}</p>
+          <p>{{MyEventsCtrl.event.attendees}}</p>
+        </div>
+    </div>
   </ion-content>
 </ion-view>
