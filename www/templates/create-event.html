@@ -16,7 +16,7 @@
       <span class="input-label">Time</span>
       <input type="time" ng-model="eventTime">
     </label>
-    
+
     <br>
 
     <span class="input-label"><strong>Select Attendees</strong></span>
@@ -25,7 +25,6 @@
         {{ user.email }}
       </ion-checkbox>
     </div>
-
 
     <button class="button button-full button-positive"
       ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
