@@ -16,18 +16,15 @@
       <span class="input-label">Time</span>
       <input type="time" ng-model="eventTime">
     </label>
+    
+    <br>
 
-    <span class="input-label">Attendees</span>
-    <label class="item item-radio">
-      <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
-        <label class="item item-radio">
-          <input type="radio" name="group" ng-click="CreateEventCtrl.addToAttendeeArray(key)">
-            <div class="item-content">
-              {{ user.email }}
-            </div>
-          <i class="radio-icon ion-checkmark"></i>
-        </label>
-      </div>
+    <span class="input-label"><strong>Select Attendees</strong></span>
+    <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
+      <ion-checkbox ng-click="CreateEventCtrl.addToAttendeeArray(key)">
+        {{ user.email }}
+      </ion-checkbox>
+    </div>
 
 
     <button class="button button-full button-positive"
