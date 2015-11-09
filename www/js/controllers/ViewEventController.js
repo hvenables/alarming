@@ -1,16 +1,7 @@
 ionicApp.controller('ViewEventController', ViewEventController);
 
-function ViewEventController($firebaseObject) {
+function ViewEventController(UserService) {
 
-  var self = this;
-
-  var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
-  var eventRef = eventsRef.child(window.location.hash.slice(13));
-
-  self.userEvent = $firebaseObject(eventRef);
-
-  eventRef.on('value', function (snapshot) {
-    self.userEvent = snapshot.val();
-  });
+  this.userEvent = UserService.userEvents[window.location.hash.slice(13)];
 
 }
