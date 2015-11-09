@@ -6,7 +6,7 @@ ionicApp.controller('MyEventsController', function (UserService, $firebaseObject
 
   self.userEvents = function () {
     console.log('userEvents called')
-    return UserService.userEvents2;
+    return UserService.userEvents;
   };
 
   var eventsRef = ref.child('events');
