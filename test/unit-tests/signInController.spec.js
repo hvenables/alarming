@@ -10,15 +10,13 @@ describe('SignInController', function() {
   beforeEach(inject(function($controller, $rootScope) {
     scope = $rootScope.$new();
     ctrl = $controller('SignInController', { $scope:$scope });
+    authService = jasmine.spyObj('authService', ['login']);
   }));
 
-////   it ('testing the test file', function() {
-////     expect(ctrl.test).toEqual('Hello');
-////   });
-////
-//    it ('successfully signs in user', function() {
-//    ctrl.signIn("Bat");
-//    expect(user).toBe('Bat');
-//    });
+
+   // it ('calls the auth service', function() {
+   // ctrl.signIn("Bat");
+   // expect(user).toBe('Bat');
+   // });
 
 });

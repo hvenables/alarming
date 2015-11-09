@@ -7,7 +7,7 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
 
   self.models = {};
   self.attendeeArray = [];
-  self.usersHash = $firebaseObject(usersRef);
+  //self.usersHash = $firebaseObject(usersRef);
 
   eventsRef.on('child_added', function (snapshot) {
     var ownerRef = usersRef.child(snapshot.val().owner);
@@ -22,7 +22,6 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
 
   self.addToAttendeeArray = function(name){
     self.attendeeArray.push(name);
-    console.log(self.attendeeArray)
   };
 
   var currentUserId = eventsRef.getAuth();
