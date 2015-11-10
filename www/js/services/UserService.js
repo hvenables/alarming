@@ -20,14 +20,6 @@ function UserService($firebaseAuth, $firebaseArray) {
         });
       });
 
-      // self.userRef.on('value', function (snapshot) {
-      //   self.userEvents = snapshot.val().events;
-      //   for (var userEvent in self.userEvents) {
-      //     ref.child('events').child(userEvent).once('value', function (snapshot) {
-      //       self.userEvents[userEvent] = snapshot.val();
-      //     });
-      //   }
-      // });
     }
   });
 
