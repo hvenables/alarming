@@ -4,8 +4,6 @@ function CreateEventController(EventService, $state) {
 
   this.addToAttendeeHash = function (key, email) {
     EventService.addToAttendeeHash(key, email);
-    console.log('attendeeHash =');
-    console.log(EventService.attendeeHash);
   };
 
   this.usersHash = EventService.usersHash;

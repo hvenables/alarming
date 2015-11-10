@@ -1,6 +1,6 @@
 ionicApp.service('EventService', EventService);
 
-function EventService(UserService, $firebaseObject) {
+function EventService($firebaseObject) {
 
   var self = this;
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
@@ -40,7 +40,6 @@ function EventService(UserService, $firebaseObject) {
   self.updateUserNodes = function (eventRef, title) {
     var eventObj = {};
     eventObj[eventRef.key()] = title;
-    console.log(eventObj);
     for (key in self.attendeeHash) {
       ref.child('users').child(key).child('events').update(eventObj);
     }
