@@ -8,10 +8,8 @@ function UserService($firebaseAuth, $firebaseArray) {
   $firebaseAuth(ref).$onAuth(function (authData) {
     if (authData) {
 
-      self.uid = authData.uid;
-      self.userRef = ref.child('users').child(self.uid);
-
-      self.userEvents = $firebaseArray(self.userRef.child('events'));
+      var userRef = ref.child('users').child(authData.uid);
+      self.userEvents = $firebaseArray(userRef.child('events'));
 
       self.userEvents.$watch(function (data) {
         ref.child('events').child(data.key).once('value', function (snapshot) {
@@ -22,5 +20,7 @@ function UserService($firebaseAuth, $firebaseArray) {
 
     }
   });
+
+
 
 }
