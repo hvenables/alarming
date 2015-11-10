@@ -2,7 +2,7 @@ var ionicApp = angular.module('alarming', ['ionic', 'ngCordova', 'firebase']);
 
 var self = this;
 
-ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cordovaGeolocation) {
+ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cordovaGeolocation, $firebaseAuth, $firebaseObject, $location, UserService) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -14,10 +14,22 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
     }
 
     var ref = new Firebase('https://event-alarm.firebaseio.com/');
+    var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
+
+    self.eventsHash = $firebaseObject(eventsRef);
+
+    ref.onAuth(function(auth) {
+      if(auth){
+        self.currentUserId = auth.uid;
+      }
+    });
+
     ref.child('events').on('value', function(events) {
       self.events = events.val();
       for (var key in self.events) {
-        notification(self.events[key]);
+        if (self.events[key].attendees == self.currentUserId){
+          notification(self.events[key])
+        }
       }
     });
 
@@ -26,10 +38,19 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
         id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
-        sound: "file://sounds/sucka.caf",
+        sound: "file://sounds/sucka.mp3",
         at: Date.parse(currentEvent.dateTime)
       })
-    }
+    };
+
+    window.cordova.plugins.notification.local.on("click", function (notification) {
+      for (var key in UserService.userEvents) {
+        if (UserService.userEvents[key].id == notification.id){
+          $location.path('/tab/view-event/'+(key.toString()));
+          console.log($location.absUrl())
+        }
+      }
+    });
   });
 });
 

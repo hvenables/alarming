@@ -1,6 +1,6 @@
 ionicApp.controller('ViewEventController', ViewEventController);
 
-function ViewEventController(UserService, $ionicLoading, $http) {
+function ViewEventController(UserService, $location) {
 
   var self = this;
 
@@ -46,17 +46,6 @@ function ViewEventController(UserService, $ionicLoading, $http) {
             window.alert('Directions request failed due to ' + status);
           }
         });
-
-      // self.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      // self.loading.hide();
-      // self.marker = new google.maps.Marker({
-      //   position: {lat: pos.coords.latitude, lng: pos.coords.longitude},
-      //   map: self.map,
-      //   title: 'Hello World!'
-      // });
-    // }, function (error) {
-      // alert('Unable to get location: ' + error.message);
-
     });
   };
 
