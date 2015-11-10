@@ -1,6 +1,6 @@
 ionicApp.controller('ViewEventController', ViewEventController);
 
-function ViewEventController(UserService, $location) {
+function ViewEventController(UserService, $location, $ionicLoading) {
 
   var self = this;
 
