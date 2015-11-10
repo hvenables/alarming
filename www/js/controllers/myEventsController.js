@@ -30,9 +30,10 @@ ionicApp.controller('MyEventsController', function($firebaseAuth, $firebaseObjec
   eventRef.on("value", getUserId);
 
   function getUserId(snapshot) {
+    console.log ("Hi there")
     self.event = snapshot.val();
     console.log('getUserId called');
-    console.log(self.event);
+    console.log(snapshot);
   };
 
 });

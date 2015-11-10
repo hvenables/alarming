@@ -4,9 +4,6 @@ describe('SignUpController', function() {
 
   var ctrl, $scope;
   var q;
-  var user = {
-    "email": "Bat6@gmail.com"
-  }
 
   beforeEach(inject(function($controller, $rootScope, $q) {
     scope = $rootScope.$new();
@@ -20,6 +17,7 @@ describe('SignUpController', function() {
     ctrl.signUp("Bat@bat.com")
     expect(authService.signUp).toHaveBeenCalled();
   });
+
 
   // it('should save email addresses to the mock database', {
   //   MockFirebase.overide();
