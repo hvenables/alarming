@@ -1,4 +1,4 @@
-ionicApp.controller('CreateEventController', function($cordovaLocalNotification, $state, $firebaseObject) {
+ionicApp.controller('CreateEventController', function($cordovaLocalNotification, $scope, $state, $http, $firebaseObject) {
 
   var self = this;
 
@@ -15,8 +15,10 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     var newNode = {};
     newNode[snapshot.key()] = snapshot.val().eventTitle;
     ownerRef.child('events').update(newNode);
-    for (var i = 0; i < attendeeArray.length; i++) {
-      usersRef.child(attendeeArray[i] + '/events').update(newNode);
+    if (attendeeArray !== undefined) {
+      for (var i = 0; i < attendeeArray.length; i++) {
+        usersRef.child(attendeeArray[i] + '/events').update(newNode);
+      }
     }
   });
 
@@ -33,13 +35,15 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     return eventDateTime;
   };
 
-  self.createEventHash = function(eventTitle, description, eventDateTime) {
+  self.createEventHash = function(eventTitle, description, eventDateTime, postcode, latlong) {
     var currentUserId = eventsRef.getAuth();
     currentEvent = {
       id : new Date().valueOf(),
       owner: currentUserId.uid,
       eventTitle : eventTitle,
       description : description,
+      postcode : postcode,
+      location : latlong,
       dateTime : eventDateTime.toJSON(),
       attendees: self.attendeeArray
     };
@@ -51,11 +55,18 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     eventsRef.push(currentEvent);
   };
 
-  self.createEvent = function(eventTitle, description, eventDate, eventTime) {
-    self.calcDateTime(eventDate, eventTime);
-    self.createEventHash(eventTitle, description, eventDateTime);
-    self.createNotification(currentEvent);
-    $state.go('tabs.myEvents')
+  self.createEvent = function(eventTitle, description, eventDate, eventTime, postcode) {
+    var eventPostcode = postcode.replace(/\s+/g, '');
+    var url = 'http://api.postcodes.io/postcodes/' + eventPostcode
+    $http.get(url).success(function(data, status, headers, config) {
+      latlong = {
+        lat :data.result.latitude,
+        lng :data.result.longitude
+      }
+      self.calcDateTime(eventDate, eventTime);
+      self.createEventHash(eventTitle, description, eventDateTime, postcode, latlong);
+      self.createNotification(currentEvent);
+      $state.go('tabs.myEvents')
+    });
   };
-
 });
