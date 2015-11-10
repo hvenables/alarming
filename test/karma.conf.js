@@ -3,7 +3,7 @@ module.exports = function(config) {
 
     basePath: '../',
 
-    frameworks: ['jasmine'],
+    frameworks: ['browserify','jasmine'],
 
     files: [
       'www/lib/ionic/js/ionic.bundle.js',
@@ -20,7 +20,13 @@ module.exports = function(config) {
     exclude: [
     ],
 
+    browserify: {
+        watch: true,
+        debug: true
+    },
+
     preprocessors: {
+        'test/unit-tests/*': ['browserify']
     },
 
     reporters: ['progress'],
@@ -36,5 +42,6 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
 
     singleRun: false
+
   })
 }
