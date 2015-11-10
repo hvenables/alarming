@@ -1,9 +1,12 @@
-ionicApp.service('authService', function ($firebaseAuth) {
+ionicApp.service('AuthService', AuthService);
 
-  const ref = new Firebase('https://event-alarm.firebaseio.com/');
-  const auth = $firebaseAuth(ref);
+function AuthService($firebaseAuth) {
+
+  var ref = new Firebase('https://event-alarm.firebaseio.com/');
+  var auth = $firebaseAuth(ref);
 
   this.logOut = function () {
+    if (auth) ref.child('users').child(auth.$getAuth().uid).off();
     return auth.$unauth();
   };
 
@@ -13,8 +16,8 @@ ionicApp.service('authService', function ($firebaseAuth) {
 
   this.signUp = function (user) {
     return auth.$createUser(user).then(function (userData) {
-      ref.child('users/' + userData.uid).set({ email: user.email });
+      ref.child('users').child(userData.uid).set({ email: user.email });
     });
   };
 
-});
+}

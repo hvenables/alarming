@@ -1,10 +1,10 @@
-ionicApp.controller('SignUpController', function (authService, $state) {
+ionicApp.controller('SignUpController', SignUpController);
 
-  var self = this;
 
-  self.signUp = function (user) {
-    authService.signUp(user).then(function () {
-      return authService.logIn(user);
+function SignUpController(AuthService, $state) {
+  this.signUp = function (user) {
+    AuthService.signUp(user).then(function () {
+      return AuthService.logIn(user);
     }).then(function () {
       $state.go('tabs.myEvents');
     }).catch(function (error) {
@@ -12,4 +12,4 @@ ionicApp.controller('SignUpController', function (authService, $state) {
     });
   };
 
-});
+}

@@ -2,7 +2,7 @@ var ionicApp = angular.module('alarming', ['ionic', 'ngCordova', 'firebase']);
 
 var self = this;
 
-ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
+ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cordovaGeolocation) {
   $ionicPlatform.ready(function() {
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -26,7 +26,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification) {
         id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
-        at: Date.parse(currentEvent.dateTime),
+        sound: "file://sounds/sucka.caf",
+        at: Date.parse(currentEvent.dateTime)
       })
     }
   });
@@ -49,14 +50,14 @@ ionicApp.filter('orderObjectBy', function() {
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/logged-out');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
 
-  .state('loggedout', {
-     url: '/logged-out',
-     templateUrl: 'templates/logged-out.html',
-     controller: 'LoggedOutController as loggedOutCtrl'
+  .state('landingpage', {
+     url: '/',
+     templateUrl: 'templates/landing-page.html',
+     controller: 'LandingPageController as landingPageCtrl'
  })
 
   .state('signin', {
@@ -88,7 +89,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'event-tab': {
         templateUrl: 'templates/create-event.html',
-        controller: 'CreateEventController as CreateEventCtrl'
+        controller: 'CreateEventController as createEventCtrl'
       }
     }
   })
@@ -98,14 +99,18 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'my-events-tab': {
         templateUrl: 'templates/my-events.html',
-        controller: 'MyEventsController as MyEventsCtrl'
+        controller: 'MyEventsController as myEventsCtrl'
       }
     }
   })
 
-  .state('myEvent', {
-    url: '/my-event/:key',
-    templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as MyEventsCtrl'
+  .state('tabs.viewEvent', {
+    url: '/view-event/:key',
+    views: {
+      'my-events-tab': {
+        templateUrl: 'templates/view-event.html',
+        controller: 'ViewEventController as viewEventCtrl'
+      }
+    }
   });
 });

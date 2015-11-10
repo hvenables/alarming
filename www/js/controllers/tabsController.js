@@ -1,10 +1,10 @@
-ionicApp.controller('TabsController', function (authService, $state) {
+ionicApp.controller('TabsController', TabsController);
 
-  var self = this;
+function TabsController(AuthService, $state) {
 
-  self.signOut = function () {
-    authService.logOut();
-    $state.go('loggedout');
+  this.signOut = function () {
+    AuthService.logOut();
+    $state.go('landingpage');
   };
 
-});
+}
