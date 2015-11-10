@@ -1,4 +1,6 @@
-ionicApp.controller('CreateEventController', function($cordovaLocalNotification, $state, $firebaseObject) {
+ionicApp.controller('CreateEventController', CreateEventController);
+
+function CreateEventController($cordovaLocalNotification, $state, $firebaseObject) {
 
   var self = this;
 
@@ -58,4 +60,4 @@ ionicApp.controller('CreateEventController', function($cordovaLocalNotification,
     $state.go('tabs.myEvents')
   };
 
-});
+}
