@@ -1,0 +1,9 @@
+{
+  "firebase": "event-alarm",
+  "public": "www",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

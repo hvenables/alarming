@@ -24,7 +24,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
         id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
-        at: Date.parse(currentEvent.dateTime),
+        sound: "file://sounds/sucka.caf",
+        at: Date.parse(currentEvent.dateTime)
       })
     }
 
@@ -73,38 +74,38 @@ ionicApp.filter('orderObjectBy', function() {
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/logged-out');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
 
-  .state('loggedout', {
-     url: '/logged-out',
-     templateUrl: 'templates/logged-out.html',
-     controller: 'LoggedOutController as LoggedOutCtrl',
+  .state('landingpage', {
+     url: '/',
+     templateUrl: 'templates/landing-page.html',
+     controller: 'LandingPageController as landingPageCtrl'
  })
 
   .state('signin', {
     url: '/sign-in',
     templateUrl: 'templates/sign-in.html',
-    controller: 'SignInController as SignInCtrl',
+    controller: 'SignInController as signInCtrl'
   })
 
   .state('signup', {
     url: '/sign-up',
     templateUrl: 'templates/sign-up.html',
-    controller: 'SignUpController as SignUpCtrl',
+    controller: 'SignUpController as signUpCtrl'
   })
 
   .state('forgotpassword', {
     url: '/forgot-password',
-    templateUrl: 'templates/forgot-password.html',
+    templateUrl: 'templates/forgot-password.html'
   })
 
   .state('tabs', {
     url: '/tab',
     abstract: true,
     templateUrl: 'templates/tabs.html',
-    controller: 'LoggedOutController as LoggedOutCtrl'
+    controller: 'TabsController as tabsCtrl'
   })
 
   .state('tabs.createEvent', {
@@ -112,7 +113,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'event-tab': {
         templateUrl: 'templates/create-event.html',
-        controller: 'CreateEventController as CreateEventCtrl',
+        controller: 'CreateEventController as createEventCtrl'
       }
     }
   })
@@ -122,14 +123,18 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'my-events-tab': {
         templateUrl: 'templates/my-events.html',
-        controller: 'MyEventsController as MyEventsCtrl',
+        controller: 'MyEventsController as myEventsCtrl'
       }
     }
   })
 
-  .state('myEvent', {
-    url: '/my-event/:key',
-    templateUrl: 'templates/my-event.html',
-    controller: 'MyEventsController as MyEventsCtrl',
+  .state('tabs.viewEvent', {
+    url: '/view-event/:key',
+    views: {
+      'my-events-tab': {
+        templateUrl: 'templates/view-event.html',
+        controller: 'ViewEventController as viewEventCtrl'
+      }
+    }
   });
 });

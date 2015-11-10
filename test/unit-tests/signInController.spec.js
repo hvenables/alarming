@@ -1,15 +1,24 @@
 describe('SignInController', function() {
 
-  beforeEach (module('alarming'));
+  beforeEach (angular.mock.module('alarming'));
 
   var ctrl, $scope;
+  var authService;
+  var q;
+  // var MockFirebase = require('mockfirebase').MockFirebase;
 
-  beforeEach(inject(function($controller, $rootScope) {
+
+  beforeEach(inject(function($controller, $rootScope, $q) {
     scope = $rootScope.$new();
-    ctrl = $controller('SignInController', { $scope:$scope });
+    authService = jasmine.createSpyObj('authService', ['logIn']);
+    q = $q;
+    ctrl = $controller('SignInController', { authService: authService });
+    authService.logIn.and.returnValue(q.when({"Just need to return object":"from the promise, this can be anything"}));
   }));
 
-  it ('testing the test file', function() {
-    expect(ctrl.test).toEqual('Hello');
-  });
+   it ('calls the auth service', function() {
+     ctrl.signIn("Bat@bat.com");
+     expect(authService.logIn).toHaveBeenCalled();
+   });
+
 });

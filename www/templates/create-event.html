@@ -1,34 +1,35 @@
-<ion-view>
+<ion-view view-title="Create-Event">
   <ion-content>
-    <label class="item item-input">
-      <span class="input-label">Title</span>
-      <input type="text" ng-model="eventTitle">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Description</span>
-      <input type="text" ng-model="description">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Date</span>
-      <input type="date" ng-model="eventDate">
-    </label>
-    <label class="item item-input">
-      <span class="input-label">Time</span>
-      <input type="time" ng-model="eventTime">
-    </label>
+    <form name="createForm">
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" ng-model="eventTitle">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text" ng-model="description">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input id="date" name="date" type="date" ng-model="eventDate">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Time</span>
+        <input id="time" name="time" type="time" ng-model="eventTime">
+      </label>
+      <br>
+      <span class="input-label"><strong>Select Attendees</strong></span>
+      <div ng-repeat="(key, user) in createEventCtrl.usersHash">
+        <ion-checkbox ng-click="createEventCtrl.addToAttendeeArray(key)">
+          {{ user.email }}
+        </ion-checkbox>
+      </div>
 
-    <br>
+      <button id="create-button" class="button button-full button-positive"
+        ng-click="createEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
+          Create event
+      </button>
+    </form>
 
-    <span class="input-label"><strong>Select Attendees</strong></span>
-    <div ng-repeat="(key, user) in CreateEventCtrl.usersHash">
-      <ion-checkbox ng-click="CreateEventCtrl.addToAttendeeArray(key)">
-        {{ user.email }}
-      </ion-checkbox>
-    </div>
-
-    <button class="button button-full button-positive"
-      ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
-        Create Event
-    </button>
   </ion-content>
 </ion-view>

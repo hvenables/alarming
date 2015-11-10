@@ -1,6 +1,6 @@
 describe('LoggedOutController', function() {
 
-  beforeEach (module('alarming'));
+  beforeEach (angular.mock.module('alarming'));
 
   var ctrl, $scope;
 
@@ -9,8 +9,8 @@ describe('LoggedOutController', function() {
     ctrl = $controller('LoggedOutController', { $scope:$scope });
   }));
 
-  it ('testing the test file', function() {
-    expect(ctrl.test).toEqual('Hello');
-  });
+  // it ('testing the test file', function() {
+  //   expect(ctrl.test).toEqual('Hello');
+  // });
 
 });
