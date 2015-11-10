@@ -1,6 +1,6 @@
 ionicApp.controller('CreateEventController', CreateEventController);
 
-function CreateEventController($cordovaLocalNotification, $state, $firebaseObject) {
+function CreateEventController(EventService, $cordovaLocalNotification, $state, $firebaseObject) {
 
   var self = this;
 
