@@ -10,4 +10,54 @@ function ViewEventController(UserService, $ionicLoading, $http) {
     lat: self.userEvent.location.lat,
     lng: self.userEvent.location.lng
   }
+
+  self.mapCreated = function(map) {
+        self.map = map;
+  };
+
+  self.centerOnMe = function () {
+    console.log("Centering");
+    if (!self.map) {
+      return;
+    }
+
+    self.loading = $ionicLoading.show({
+      content: 'Getting current location...',
+      showBackdrop: false
+    });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      console.log('Got pos', pos);
+      var directionsDisplay = new google.maps.DirectionsRenderer();
+      var directionsService = new google.maps.DirectionsService();
+      var map = self.map;
+      directionsDisplay.setMap(map);
+      console.log(map !== undefined);
+      console.log("hello");
+      directionsService.route({
+        origin: {lat: pos.coords.latitude, lng: pos.coords.longitude}, //current position
+        destination: {lat: self.latlong.lat, lng: self.latlong.lng},
+        travelMode: google.maps.TravelMode.DRIVING
+        }, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            self.loading.hide();
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+
+      // self.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+      // self.loading.hide();
+      // self.marker = new google.maps.Marker({
+      //   position: {lat: pos.coords.latitude, lng: pos.coords.longitude},
+      //   map: self.map,
+      //   title: 'Hello World!'
+      // });
+    // }, function (error) {
+      // alert('Unable to get location: ' + error.message);
+
+    });
+  };
+
 }

@@ -2,7 +2,8 @@ ionicApp.directive('map', function() {
   return {
     restrict: 'E',
     scope: {
-      latlong: '=latlong'
+      latlong: '=latlong',
+      onCreate: '&'
     },
     link: function ($scope, $element, $attr) {
       function initialize() {
@@ -19,6 +20,8 @@ ionicApp.directive('map', function() {
           map: map,
           title: 'Hello World!'
         });
+
+        $scope.onCreate({map: map});
 
         google.maps.event.addDomListener($element[0], 'mousedown', function (e) {
           e.preventDefault();
