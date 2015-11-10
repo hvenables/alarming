@@ -1,6 +1,6 @@
 ionicApp.service('UserService', UserService);
 
-function UserService($firebaseAuth, $firebaseArray) {
+function UserService($firebaseAuth, $firebaseArray, $firebaseObject) {
 
   var self = this;
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
@@ -9,8 +9,10 @@ function UserService($firebaseAuth, $firebaseArray) {
     if (authData) {
 
       var userRef = ref.child('users').child(authData.uid);
-      self.userEvents = $firebaseArray(userRef.child('events'));
 
+      self.user = $firebaseObject(userRef);
+
+      self.userEvents = $firebaseArray(userRef.child('events'));
       self.userEvents.$watch(function (data) {
         ref.child('events').child(data.key).once('value', function (snapshot) {
           var index = self.userEvents.$indexFor(data.key)
@@ -20,7 +22,5 @@ function UserService($firebaseAuth, $firebaseArray) {
 
     }
   });
-
-
 
 }

@@ -1,6 +1,7 @@
 <ion-view view-title="Create event">
   <ion-content>
-    <form name="createForm">
+
+    <!-- <form name="createForm"> -->
       <label class="item item-input">
         <span class="input-label">Title</span>
         <input type="text" ng-model="eventTitle">
@@ -11,25 +12,27 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Date</span>
-        <input id="date" name="date" type="date" ng-model="eventDate">
+        <input id="date" name="date" type="date" ng-model="date">
       </label>
       <label class="item item-input">
         <span class="input-label">Time</span>
-        <input id="time" name="time" type="time" ng-model="eventTime">
+        <input id="time" name="time" type="time" ng-model="time">
       </label>
       <br>
-      <span class="input-label"><strong>Select Attendees</strong></span>
-      <div ng-repeat="(key, user) in createEventCtrl.usersHash">
-        <ion-checkbox ng-click="createEventCtrl.addToAttendeeArray(key)">
+      <label class="item item-input">
+        <span class="input-label">Select attendees:</span>
+      </label>
+      <div ng-repeat="(uid, user) in createEventCtrl.usersHash">
+        <ion-checkbox ng-click="createEventCtrl.addToAttendeeHash(uid, user.email)">
           {{ user.email }}
         </ion-checkbox>
       </div>
 
       <button id="create-button" class="button button-full button-positive"
-        ng-click="createEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
-          Create event
+        ng-click="createEventCtrl.createEvent(eventTitle, description, date, time)">
+        Add event
       </button>
-    </form>
+    <!-- </form> -->
 
   </ion-content>
 </ion-view>
