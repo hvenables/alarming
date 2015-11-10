@@ -26,7 +26,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
         id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
-        at: Date.parse(currentEvent.dateTime),
+        sound: "file://sounds/sucka.caf",
+        at: Date.parse(currentEvent.dateTime)
       })
     }
   });
@@ -103,9 +104,13 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
     }
   })
 
-  .state('viewevent', {
+  .state('tabs.viewEvent', {
     url: '/view-event/:key',
-    templateUrl: 'templates/view-event.html',
-    controller: 'ViewEventController as viewEventCtrl'
+    views: {
+      'my-events-tab': {
+        templateUrl: 'templates/view-event.html',
+        controller: 'ViewEventController as viewEventCtrl'
+      }
+    }
   });
 });

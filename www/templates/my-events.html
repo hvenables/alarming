@@ -2,8 +2,9 @@
   <ion-content>
     <div class="list">
       <div ng-repeat="(key, event) in myEventsCtrl.userEvents()">
-        <a class="item item-avatar" ng-href="#/view-event/{{ key }}">
+        <a class="item item-avatar" ng-href="#/tab/view-event/{{ key }}">
           <img src="img/alarming.jpg">
+          <p>{{ event }}</p>
           <h2>{{ event.eventTitle }}</h2>
           <p>{{ event.description }}</p>
           <p>{{ event.dateTime | date:'d MMM yyyy, HH:mm' }}</p>
