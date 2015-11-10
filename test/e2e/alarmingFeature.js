@@ -63,7 +63,7 @@ describe('Alarming', function() {
     // element(by.xpath('//button[@class="button.button-full.button-positive"][0]')).click();
     //element(by.xpath('//button[@class="button" and contains(., "Create Event")][0]')).click();
     // element(by.buttonText('Create event')).click();
-    console.log(element(by.id('create-button')));
+    // console.log(element(by.id('create-button')));
     // browser.executeScript('window.scrollTo(0,10000);').then(function () {
     //   var button = ($('[ng-click="CreateEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)"].button.button-full.button-positive'));
     //   button.click();
