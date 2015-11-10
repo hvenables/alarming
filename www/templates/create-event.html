@@ -10,6 +10,10 @@
         <input type="text" ng-model="description">
       </label>
       <label class="item item-input">
+        <span class="input-label">Postcode</span>
+        <input type="text" ng-model="postcode">
+      </label>
+      <label class="item item-input">
         <span class="input-label">Date</span>
         <input id="date" name="date" type="date" ng-model="eventDate">
       </label>
@@ -26,10 +30,10 @@
       </div>
 
       <button id="create-button" class="button button-full button-positive"
-        ng-click="createEventCtrl.createEvent(eventTitle, description, eventDate, eventTime)">
+        ng-click="createEventCtrl.createEvent(eventTitle, description,
+        eventDate, eventTime, postcode)">
           Create event
       </button>
     </form>
-
   </ion-content>
 </ion-view>

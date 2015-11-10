@@ -1,5 +1,8 @@
 ionicApp.controller('MapCtrl', function($scope, $ionicLoading) {
 
+  // console.log(viewEventCtrl.userEvent.location);
+  // console.log(viewEventCtrl.userEvent.location)
+
 
   $scope.mapCreated = function(map) {
     $scope.map = map;
