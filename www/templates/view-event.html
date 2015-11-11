@@ -21,10 +21,10 @@
       </div>
       <div class="item item-body">
         <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
-        <div ng-repeat="(key, email) in viewEventCtrl.userEvent().attendees">
+        <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
           <div class="row">
             <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
-            <div class="col col-100">{{ email }}</div>
+            <div class="col col-100">{{ attendee.email }}</div>
             <div class= button-bar>
               <button ng-click="viewEventCtrl.response()" class="button button-full"
                 ng-class="{'button-positive': viewEventCtrl.attending,

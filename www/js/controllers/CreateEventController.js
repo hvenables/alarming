@@ -4,6 +4,8 @@ function CreateEventController(EventService, $state, $http) {
 
   var self = this
 
+  var attending = false;
+
   self.addToAttendeeHash = function (key, email) {
     EventService.addToAttendeeHash(key, email);
   };

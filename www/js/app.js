@@ -45,7 +45,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       },{
         id: 1,
         title: "You have been invited to an event",
-        at: ((Date.parse(new Date)) + 5000)
+        at: ((Date.parse(new Date)) + 20000)
       }]);
     };
 
