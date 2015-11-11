@@ -14,15 +14,13 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     return (eventTime <= time);
   };
 
-  self.response = function() {
-    for (var key in self.userEvent().attendees) {
-      if (self.userEvent().attendees[key].attending === false) {
-          self.userEvent().attendees[key].attending = true;
-        } else {
-          self.userEvent().attendees[key].attending = false;
-        }
-      };
-    };
+  self.response = function(key) {
+    if (self.userEvent().attendees[key].attending === false) {
+        self.userEvent().attendees[key].attending = true;
+    } else {
+        self.userEvent().attendees[key].attending = false;
+    }
+  };
 
   self.latlong = {
     lat: self.userEvent().location.lat,
