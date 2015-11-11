@@ -9,4 +9,6 @@ function UpdateEventController(UserService) {
 
   self.userEvent = UserService.user.events[window.location.hash.slice(19)];
 
+  self.postcode = "Hello"
+
 }

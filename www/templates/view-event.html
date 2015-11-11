@@ -29,8 +29,11 @@
               <button ng-click="viewEventCtrl.response()" class="button button-full"
                 ng-class="{'button-positive': attendee.attending,
                 'button-light': !attendee.attending}">Attending</button>
-              <button ng-show="viewEventCtrl.late()" class="button button-full button-positive">Late</button>
-              <button ng-click="viewEventCtrl.response()" class="button button-full"
+              <button ng-show="viewEventCtrl.tellLate()"
+                ng-click="viewEventCtrl.late()" class="button button-full"
+                ng-class="{'button-positive':
+                !viewEventCtrl.userEvent().attendees[key].late, 'button-light': viewEventCtrl.userEvent().attendees[key].late}">Late</button>
+              <button ng-click="viewEventCtrl.response(key)" class="button button-full"
                 ng-class="{'button-positive': !attendee.attending,
                 'button-light': attendee.attending}">Not Coming</button>
             </div>

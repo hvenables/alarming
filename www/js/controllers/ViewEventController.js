@@ -8,11 +8,19 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     return UserService.user.events[window.location.hash.slice(17)];
   };
 
-  self.late = function() {
+  self.tellLate = function() {
     var eventTime = Date.parse(self.userEvent().dateTime);
     var time = Date.parse(new Date) - 600000;
     return (eventTime <= time);
   };
+
+  self.late = function(key) {
+    if (self.userEvent().attendees[key].late === false) {
+      self.userEvent().attendees[key].late = true;
+    } else {
+      self.userEvent().attendees[key].late = false;
+    }
+  }
 
   self.response = function() {
     for (var key in self.userEvent().attendees) {
