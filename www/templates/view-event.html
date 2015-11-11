@@ -26,11 +26,11 @@
             <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
             <div class="col col-100">{{ attendee.email }}</div>
             <div class= button-bar>
-              <button ng-click="viewEventCtrl.response()" class="button button-full"
+              <button ng-click="viewEventCtrl.response(key)" class="button button-full"
                 ng-class="{'button-positive': attendee.attending,
                 'button-light': !attendee.attending}">Attending</button>
               <button ng-show="viewEventCtrl.late()" class="button button-full button-positive">Late</button>
-              <button ng-click="viewEventCtrl.response()" class="button button-full"
+              <button ng-click="viewEventCtrl.response(key)" class="button button-full"
                 ng-class="{'button-positive': !attendee.attending,
                 'button-light': attendee.attending}">Not Coming</button>
             </div>
