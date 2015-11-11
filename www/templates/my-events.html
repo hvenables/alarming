@@ -14,7 +14,7 @@
         </a>
 
         <div ng-if="event.owner === myEventsCtrl.userId()">
-          <ion-delete-button class="ion-minus-circled" ng-click="myEventsCtrl.deleteEvent()"></ion-delete-button>
+          <ion-delete-button class="ion-minus-circled" ng-click="myEventsCtrl.deleteEvent(key)"></ion-delete-button>
         </div>
 
       </ion-item>

@@ -11,12 +11,24 @@ function UserService($firebaseAuth, $firebaseObject) {
     }
   });
 
-  this.attendeeList = function (userEvent) {
+  self.attendeeList = function (userEvent) {
     attendeeArray = [];
     for (var key in userEvent.attendees) {
       attendeeArray.push(userEvent.attendees[key]);
     }
     return attendeeArray.join(', ');
+  }
+
+  self.deleteEvent = function (eventId) {
+    console.log('about to zap event ' + eventId);
+    var eventAttendees = self.user.events[eventId].attendees;
+    for (key in eventAttendees) {
+      console.log(eventAttendees[key] + ' needs to be updated');
+      var obj = $firebaseObject(ref.child('users').child(key).child('events').child(eventId));
+      obj.$remove();
+    }
+    var obj = $firebaseObject(ref.child('events').child(eventId))
+    obj.$remove();
   }
 
 }
