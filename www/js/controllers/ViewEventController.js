@@ -4,24 +4,38 @@ function ViewEventController(UserService, $location, $ionicLoading) {
 
   var self = this;
 
+  self.attending = false;
+
   self.userEvent = function () {
     return UserService.user.events[window.location.hash.slice(17)];
-  }
+  };
+
+  self.late = function() {
+    var eventTime = Date.parse(self.userEvent().dateTime);
+    var time = Date.parse(new Date) - 600000;
+    return (eventTime <= time);
+  };
+
+  self.response = function() {
+    if (self.attending === false) {
+      self.attending = true;
+      console.log(self.attending)
+    } else {
+      self.attending = false;
+      console.log(self.attending)
+    }
+  };
 
   self.latlong = {
     lat: self.userEvent().location.lat,
     lng: self.userEvent().location.lng
   }
 
-  console.log(self.userEvent());
-  console.log(self.myevent);
-
   self.mapCreated = function(map) {
     self.map = map;
   };
 
   self.centerOnMe = function () {
-    console.log("Centering");
     if (!self.map) {
       return;
     }
@@ -43,6 +57,7 @@ function ViewEventController(UserService, $location, $ionicLoading) {
         }, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            marker = null;
             self.loading.hide();
           } else {
             window.alert('Directions request failed due to ' + status);

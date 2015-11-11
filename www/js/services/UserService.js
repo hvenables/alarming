@@ -14,7 +14,7 @@ function UserService($firebaseAuth, $firebaseObject) {
   this.attendeeList = function (userEvent) {
     attendeeArray = [];
     for (var key in userEvent.attendees) {
-      attendeeArray.push(userEvent.attendees[key]);
+      attendeeArray.push(userEvent.attendees[key].email);
     }
     return attendeeArray.join(', ');
   }

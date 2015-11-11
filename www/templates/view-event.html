@@ -21,8 +21,20 @@
       </div>
       <div class="item item-body">
         <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
-        <div ng-repeat="(key, email) in viewEventCtrl.userEvent().attendees">
-          <p>{{ email }}</p>
+        <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
+          <div class="row">
+            <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
+            <div class="col col-100">{{ attendee.email }}</div>
+            <div class= button-bar>
+              <button ng-click="viewEventCtrl.response()" class="button button-full"
+                ng-class="{'button-positive': viewEventCtrl.attending,
+                'button-light': !viewEventCtrl.attending}">Attending</button>
+              <button ng-show="viewEventCtrl.late()" class="button button-full button-positive">Late</button>
+              <button ng-click="viewEventCtrl.response()" class="button button-full"
+                ng-class="{'button-positive': !viewEventCtrl.attending,
+                'button-light': viewEventCtrl.attending}">Not Coming</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,7 +8,11 @@ function EventService($firebaseObject) {
   self.attendeeHash = {};
 
   self.addToAttendeeHash = function (key, email) {
-    self.attendeeHash[key] = email;
+    self.attendeeHash[key] = {
+      email: email,
+      attending: false,
+      late: false
+    }
   };
 
   self.makeDateTime = function (date, time) {
