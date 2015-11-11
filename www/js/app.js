@@ -26,13 +26,18 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
     });
 
     usersRef.child(self.currentUserId).on('value', function(userData) {
+      console.log('===================================================');
       self.events = userData.val().events;
       for (var key in self.events) {
-        notification(self.events[key])
-      }
+        console.log('++++++++++++++++++++++++++++++++++++++++++++++++++');
+        if(self.events[key].id > (Date.parse(new Date)-1000)){
+          console.log('initil notification');
+          initialNotification(self.events[key])
+        };
+        console.log('Notifcation');
+        notification(self.events[key]);
+      };
     });
-
-
 
     function notification(currentEvent) {
       $cordovaLocalNotification.schedule({
@@ -44,14 +49,22 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       })
     };
 
+    function initialNotification(currentEvent) {
+      console.log('Run');
+      $cordovaLocalNotification.schedule({
+        id: currentEvent.id,
+        title: currentEvent.eventTitle,
+        text: currentEvent.description,
+        sound: "file://sounds/sucka.mp3",
+        at: ((Date.parse(new Date))+60000)
+      })
+      console.log(((Date.parse(new Date))+60000));
+    };
+
     window.cordova.plugins.notification.local.on("click", function (notification) {
       for (var key in UserService.user.events) {
-        console.log(UserService.user.events[key].id);
-        console.log(notification.id);
         if (UserService.user.events[key].id == notification.id){
-          console.log(key);
           $location.path('/tab/view-event/'+key);
-          console.log($location.absUrl())
         }
       }
     });

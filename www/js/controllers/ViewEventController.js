@@ -13,15 +13,11 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     lng: self.userEvent().location.lng
   }
 
-  console.log(self.userEvent());
-  console.log(self.myevent);
-
   self.mapCreated = function(map) {
     self.map = map;
   };
 
   self.centerOnMe = function () {
-    console.log("Centering");
     if (!self.map) {
       return;
     }
