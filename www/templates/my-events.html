@@ -2,7 +2,7 @@
   <ion-content>
 
     <div class="list">
-      <div ng-repeat="(key, event) in myEventsCtrl.userEvents()">
+      <div ng-repeat="(key, event) in myEventsCtrl.userEvents() ">
         <a class="item item-avatar" ng-href="#/tab/view-event/{{ key }}">
           <img src="img/alarming.jpg">
           <h2>{{ event.eventTitle }}</h2>
