@@ -1,25 +1,28 @@
-<ion-view view-title="{{viewEventCtrl.userEvent.eventTitle}}">
+<ion-view view-title="{{ viewEventCtrl.userEvent().eventTitle }}">
   <ion-content>
+
     <div class="list card">
       <div class="item item-avatar">
         <img src="img/alarming.jpg">
-        <h2>{{viewEventCtrl.userEvent.eventTitle}}</h2>
-        <p>{{viewEventCtrl.userEvent.dateTime  | date:'d MMM yyyy, HH:mm' }}</p>
-        <p>{{viewEventCtrl.userEvent.postcode}}</p>
+        <h2>{{ viewEventCtrl.userEvent().eventTitle }}</h2>
+        <p>{{ viewEventCtrl.userEvent().dateTime  | date:'d MMM yyyy, HH:mm' }}</p>
+        <p>{{ viewEventCtrl.userEvent().postcode }}</p>
       </div>
-
       <div class="item item-body">
         <div id="map">
           <ion-content scroll="false">
             <map on-create="viewEventCtrl.mapCreated(map)" latlong='viewEventCtrl.latlong'></map>
           </ion-content>
-            <a id="locate" ng-click="viewEventCtrl.centerOnMe()" class="button button-icon icon ion-navigate"></a>
+          <a id="locate" ng-click="viewEventCtrl.centerOnMe()" class="button button-icon icon ion-navigate"></a>
         </div>
       </div>
-        <div class="item item-body">
-          <p>{{viewEventCtrl.userEvent.description}}</p>
-          <p>{{viewEventCtrl.userEvent.attendees}}</p>
+      <div class="item item-body">
+        <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
+        <div ng-repeat="(key, email) in viewEventCtrl.userEvent().attendees">
+          <p>{{ email }}</p>
         </div>
+      </div>
     </div>
+
   </ion-content>
 </ion-view>

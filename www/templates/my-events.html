@@ -1,5 +1,6 @@
-<ion-view view-title="My-Events">
+<ion-view view-title="Events">
   <ion-content>
+
     <div class="list">
       <div ng-repeat="(key, event) in myEventsCtrl.userEvents()">
         <a class="item item-avatar" ng-href="#/tab/view-event/{{ key }}">
@@ -7,7 +8,7 @@
           <h2>{{ event.eventTitle }}</h2>
           <p>{{ event.description }}</p>
           <p>{{ event.dateTime | date:'d MMM yyyy, HH:mm' }}</p>
-          <p>{{ event.attendees.email }}</p>
+          <p>{{ myEventsCtrl.attendeeList(event) }}</p>
         </a>
       </div>
     </div>

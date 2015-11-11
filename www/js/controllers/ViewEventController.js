@@ -4,15 +4,13 @@ function ViewEventController(UserService, $location, $ionicLoading) {
 
   var self = this;
 
-  self.userEvent = UserService.userEvents[window.location.hash.slice(17)];
-
-  self.latlong = {
-    lat: self.userEvent.location.lat,
-    lng: self.userEvent.location.lng
+  self.userEvent = function () {
+    console.log(UserService.user.events)
+    return UserService.user.events[window.location.hash.slice(17)];
   }
 
   self.mapCreated = function(map) {
-        self.map = map;
+    self.map = map;
   };
 
   self.centerOnMe = function () {

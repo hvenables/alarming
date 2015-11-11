@@ -15,6 +15,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
 
     var ref = new Firebase('https://event-alarm.firebaseio.com/');
     var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
+    var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
 
     self.eventsHash = $firebaseObject(eventsRef);
 
@@ -24,19 +25,16 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       }
     });
 
-    console.log(currentUserId);
-
-    ref.child('events').on('value', function(events) {
-      self.events = events.val();
+    usersRef.child(self.currentUserId).on('value', function(userData) {
+      self.events = userData.val().events;
       for (var key in self.events) {
-        if (self.events[key].attendees == self.currentUserId){
-          notification(self.events[key])
-        }
+        notification(self.events[key])
       }
     });
 
+
+
     function notification(currentEvent) {
-      console.log(currentEvent);
       $cordovaLocalNotification.schedule({
         id: currentEvent.id,
         title: currentEvent.eventTitle,
@@ -47,9 +45,13 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
     };
 
     window.cordova.plugins.notification.local.on("click", function (notification) {
-      for (var key in UserService.userEvents) {
-        if (UserService.userEvents[key].id == notification.id){
-          $location.path('/tab/view-event/'+(key.toString()));
+      for (var key in UserService.user.events) {
+        console.log(UserService.user.events[key].id);
+        console.log(notification.id);
+        if (UserService.user.events[key].id == notification.id){
+          console.log(key);
+          $location.path('/tab/view-event/'+key);
+          console.log($location.absUrl())
         }
       }
     });
