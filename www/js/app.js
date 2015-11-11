@@ -36,24 +36,17 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
     });
 
     function notification(currentEvent) {
-      $cordovaLocalNotification.schedule({
+      $cordovaLocalNotification.schedule([{
         id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
         sound: "file://sounds/sucka.mp3",
         at: Date.parse(currentEvent.dateTime)
-      })
-    };
-
-    function initialNotification(currentEvent) {
-      console.log('Run');
-      $cordovaLocalNotification.schedule({
-        id: ((currentEvent.id)+1000),
-        title: currentEvent.eventTitle,
-        text: currentEvent.description,
-        sound: "file://sounds/sucka.mp3",
-        at: ((Date.parse(new Date))+10000)
-      })
+      },{
+        id: 1,
+        title: "You have been invited to an event",
+        at: ((Date.parse(new Date)) + 5000)
+      }]);
     };
 
     window.cordova.plugins.notification.local.on("click", function (notification) {

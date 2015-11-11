@@ -8,12 +8,23 @@ function ViewEventController(UserService, $location, $ionicLoading) {
 
   self.userEvent = function () {
     return UserService.user.events[window.location.hash.slice(17)];
-  }
+  };
+
+  self.late = function() {
+    var eventTime = Date.parse(self.userEvent().dateTime);
+    var time = Date.parse(new Date) - 600000;
+    return (eventTime <= time);
+  };
 
   self.response = function() {
-    self.attending = true;
-  }
-  console.log(self.userEvent())
+    if (self.attending === false) {
+      self.attending = true;
+      console.log(self.attending)
+    } else {
+      self.attending = false;
+      console.log(self.attending)
+    }
+  };
 
   self.latlong = {
     lat: self.userEvent().location.lat,
