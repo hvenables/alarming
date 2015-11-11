@@ -22,7 +22,13 @@
       <div class="item item-body">
         <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
         <div ng-repeat="(key, email) in viewEventCtrl.userEvent().attendees">
-          <p>{{ email }}</p>
+          <div class="row">
+            <div class="col col-100">{{ email }}</div>
+            <div class= button-bar>
+              <a ng-click="viewEventCtrl.attending"class="button button-full button-positive">Attending</a>
+              <a class="button button-full button-positive">Not Coming</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,8 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     return UserService.user.events[window.location.hash.slice(17)];
   }
 
+  console.log(self.userEvent())
+
   self.latlong = {
     lat: self.userEvent().location.lat,
     lng: self.userEvent().location.lng
@@ -43,6 +45,7 @@ function ViewEventController(UserService, $location, $ionicLoading) {
         }, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            marker = null;
             self.loading.hide();
           } else {
             window.alert('Directions request failed due to ' + status);
