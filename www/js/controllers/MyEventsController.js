@@ -1,13 +1,27 @@
 ionicApp.controller('MyEventsController', MyEventsController);
 
-function MyEventsController(UserService) {
+function MyEventsController(UserService, $state) {
 
-  this.userEvents = function () {
+  var self = this;
+
+  self.userEvents = function () {
     return UserService.user.events;
   };
 
-  this.attendeeList = function (userEvent) {
+  self.userId = function () {
+    return UserService.user.$id;
+  }
+
+  self.attendeeList = function (userEvent) {
     return UserService.attendeeList(userEvent);
+  }
+
+  self.deleteEvent = function (eventId) {
+    UserService.deleteEvent(eventId);
+  }
+
+  self.updateEvent = function (eventId) {
+    $state.go('tabs.updateEvent');
   }
 
 }
