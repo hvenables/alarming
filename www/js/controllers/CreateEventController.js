@@ -20,5 +20,4 @@ function CreateEventController(EventService, $state, $http) {
       $state.go('tabs.myEvents');
     });
   };
-
 }

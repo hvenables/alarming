@@ -32,8 +32,6 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       }
     });
 
-
-
     function notification(currentEvent) {
       $cordovaLocalNotification.schedule({
         id: currentEvent.id,
@@ -46,12 +44,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
 
     window.cordova.plugins.notification.local.on("click", function (notification) {
       for (var key in UserService.user.events) {
-        console.log(UserService.user.events[key].id);
-        console.log(notification.id);
         if (UserService.user.events[key].id == notification.id){
-          console.log(key);
           $location.path('/tab/view-event/'+key);
-          console.log($location.absUrl())
         }
       }
     });
