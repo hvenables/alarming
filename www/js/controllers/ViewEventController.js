@@ -2,6 +2,8 @@ ionicApp.controller('ViewEventController', ViewEventController);
 
 function ViewEventController(UserService) {
 
-  this.userEvent = UserService.userEvents[window.location.hash.slice(17)];
+  this.userEvent = function () {
+    return UserService.user.events[window.location.hash.slice(17)];
+  }
 
 }

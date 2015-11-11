@@ -1,26 +1,20 @@
 ionicApp.service('UserService', UserService);
 
-function UserService($firebaseAuth, $firebaseArray, $firebaseObject) {
+function UserService($firebaseAuth, $firebaseObject) {
 
   var self = this;
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
 
-  $firebaseAuth(ref).$onAuth(function (authData) {
-    if (authData) {
-
-      var userRef = ref.child('users').child(authData.uid);
-
-      self.user = $firebaseObject(userRef);
-
-      self.userEvents = $firebaseArray(userRef.child('events'));
-      self.userEvents.$watch(function (data) {
-        ref.child('events').child(data.key).once('value', function (snapshot) {
-          var index = self.userEvents.$indexFor(data.key)
-          self.userEvents[index] = snapshot.val();
-        });
-      });
-
-    }
+  $firebaseAuth(ref).$onAuth(function (auth) {
+    if (auth) self.user = $firebaseObject(ref.child('users').child(auth.uid));
   });
+
+  this.attendeeList = function (userEvent) {
+    attendeeArray = [];
+    for (var key in userEvent.attendees) {
+      attendeeArray.push(userEvent.attendees[key]);
+    }
+    return attendeeArray.join(', ');
+  }
 
 }

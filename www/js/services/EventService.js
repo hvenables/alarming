@@ -23,7 +23,7 @@ function EventService($firebaseObject) {
       owner: owner.uid
     };
     var eventRef = self.createEventNode(newEvent);
-    self.updateUserNodes(eventRef, title);
+    self.updateUserNodes(eventRef, newEvent);
     self.attendeeHash = {};
   };
 
@@ -37,9 +37,9 @@ function EventService($firebaseObject) {
     return ref.child('events').push(newEvent);
   };
 
-  self.updateUserNodes = function (eventRef, title) {
+  self.updateUserNodes = function (eventRef, newEvent) {
     var eventObj = {};
-    eventObj[eventRef.key()] = title;
+    eventObj[eventRef.key()] = newEvent;
     for (key in self.attendeeHash) {
       ref.child('users').child(key).child('events').update(eventObj);
     }
