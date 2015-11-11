@@ -4,8 +4,6 @@ function ViewEventController(UserService, $location, $ionicLoading) {
 
   var self = this;
 
-  self.attending = false;
-
   self.userEvent = function () {
     return UserService.user.events[window.location.hash.slice(17)];
   };
@@ -17,14 +15,14 @@ function ViewEventController(UserService, $location, $ionicLoading) {
   };
 
   self.response = function() {
-    if (self.attending === false) {
-      self.attending = true;
-      console.log(self.attending)
-    } else {
-      self.attending = false;
-      console.log(self.attending)
-    }
-  };
+    for (var key in self.userEvent().attendees) {
+      if (self.userEvent().attendees[key].attending === false) {
+          self.userEvent().attendees[key].attending = true;
+        } else {
+          self.userEvent().attendees[key].attending = false;
+        }
+      };
+    };
 
   self.latlong = {
     lat: self.userEvent().location.lat,
