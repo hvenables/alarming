@@ -4,10 +4,15 @@ function ViewEventController(UserService, $location, $ionicLoading) {
 
   var self = this;
 
+  self.attending = false;
+
   self.userEvent = function () {
     return UserService.user.events[window.location.hash.slice(17)];
   }
 
+  self.response = function() {
+    self.attending = true;
+  }
   console.log(self.userEvent())
 
   self.latlong = {

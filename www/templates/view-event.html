@@ -25,8 +25,11 @@
           <div class="row">
             <div class="col col-100">{{ email }}</div>
             <div class= button-bar>
-              <a ng-click="viewEventCtrl.attending"class="button button-full button-positive">Attending</a>
-              <a class="button button-full button-positive">Not Coming</a>
+              <a ng-click="viewEventCtrl.response()" class="button button-full" ng-class="{'button-positive': viewEventCtrl.attending,
+                'button-light': !attending}">Attending</a>
+              <a ng-click="viewEventCtrl.response()" class="button button-full"
+                ng-class="{'button-positive': viewEventCtrl.attending,
+                'button-light': !attending}">Not Coming</a>
             </div>
           </div>
         </div>
