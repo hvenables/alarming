@@ -5,5 +5,4 @@ function MyEventsController(UserService, $state) {
   this.userEvents = function () {
     return UserService.userEvents;
   };
-
 }

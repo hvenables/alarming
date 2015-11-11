@@ -24,6 +24,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       }
     });
 
+    console.log(currentUserId);
+
     ref.child('events').on('value', function(events) {
       self.events = events.val();
       for (var key in self.events) {
@@ -34,6 +36,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
     });
 
     function notification(currentEvent) {
+      console.log(currentEvent);
       $cordovaLocalNotification.schedule({
         id: currentEvent.id,
         title: currentEvent.eventTitle,
@@ -47,7 +50,6 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       for (var key in UserService.userEvents) {
         if (UserService.userEvents[key].id == notification.id){
           $location.path('/tab/view-event/'+(key.toString()));
-          console.log($location.absUrl())
         }
       }
     });
