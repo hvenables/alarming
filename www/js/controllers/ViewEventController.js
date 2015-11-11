@@ -5,9 +5,16 @@ function ViewEventController(UserService, $location, $ionicLoading) {
   var self = this;
 
   self.userEvent = function () {
-    console.log(UserService.user.events)
     return UserService.user.events[window.location.hash.slice(17)];
   }
+
+  self.latlong = {
+    lat: self.userEvent().location.lat,
+    lng: self.userEvent().location.lng
+  }
+
+  console.log(self.userEvent());
+  console.log(self.myevent);
 
   self.mapCreated = function(map) {
     self.map = map;
@@ -25,13 +32,10 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     });
 
     navigator.geolocation.getCurrentPosition(function (pos) {
-      console.log('Got pos', pos);
       var directionsDisplay = new google.maps.DirectionsRenderer();
       var directionsService = new google.maps.DirectionsService();
       var map = self.map;
       directionsDisplay.setMap(map);
-      console.log(map !== undefined);
-      console.log("hello");
       directionsService.route({
         origin: {lat: pos.coords.latitude, lng: pos.coords.longitude}, //current position
         destination: {lat: self.latlong.lat, lng: self.latlong.lng},

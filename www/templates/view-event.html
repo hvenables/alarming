@@ -13,7 +13,10 @@
           <ion-content scroll="false">
             <map on-create="viewEventCtrl.mapCreated(map)" latlong='viewEventCtrl.latlong'></map>
           </ion-content>
-          <a id="locate" ng-click="viewEventCtrl.centerOnMe()" class="button button-icon icon ion-navigate"></a>
+          <ion-footer-bar class="bar-dark">
+            <a id="locate" ng-click="viewEventCtrl.centerOnMe()" class="button
+              button-icon icon ion-navigate">Get Directions</a>
+          </ion-footer-bar>
         </div>
       </div>
       <div class="item item-body">
