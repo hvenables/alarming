@@ -1,7 +1,7 @@
 <ion-view view-title="Events">
   <ion-content>
 
-    <ion-list show-delete="shouldShowDelete" class="list">
+    <ion-list show-delete="false" can-swipe="true">
       <ion-item ng-repeat="(key, event) in myEventsCtrl.userEvents()">
 
         <a class="item item-avatar" ng-click="myEventsCtrl.testView(key)" ng-href="#/tab/view-event/{{ key }}">
@@ -12,16 +12,12 @@
           <p>{{ myEventsCtrl.attendeeList(event) }}</p>
         </a>
 
-        <div ng-if="event.owner === myEventsCtrl.userId()">
-          <ion-delete-button class="ion-minus-circled" ng-click="myEventsCtrl.deleteEvent(key)"></ion-delete-button>
-        </div>
+          <ion-option-button ng-if="event.owner === myEventsCtrl.userId()" class="button-assertive button-large ion-trash-b" ng-click="myEventsCtrl.deleteEvent(key)"></ion-option-button>
+          <ion-option-button ng-if="event.owner === myEventsCtrl.userId()" class="button-balanced ion-edit"></ion-option-button>
+
 
       </ion-item>
     </ion-list>
-
-    <ion-toggle ng-model="shouldShowDelete">
-      Show delete?
-    </ion-toggle>
 
   </ion-content>
 </ion-view>
