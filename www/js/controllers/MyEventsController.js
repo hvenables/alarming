@@ -20,4 +20,9 @@ function MyEventsController(UserService) {
     UserService.deleteEvent(eventId);
   }
 
+  self.testView = function (eventId) {
+    console.log('testView ' + eventId);
+  }
+
+  self.listCanSwipe = true;
 }

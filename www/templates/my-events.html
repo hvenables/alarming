@@ -1,11 +1,10 @@
 <ion-view view-title="Events">
   <ion-content>
 
-    <ion-list show-delete="true" class="list" can-swipe="true">
-    <!-- <div class="list"> -->
+    <ion-list show-delete="shouldShowDelete" class="list">
       <ion-item ng-repeat="(key, event) in myEventsCtrl.userEvents()">
 
-        <a class="item item-avatar" ng-href="#/tab/view-event/{{ key }}">
+        <a class="item item-avatar" ng-click="myEventsCtrl.testView(key)" ng-href="#/tab/view-event/{{ key }}">
           <img src="img/alarming.jpg">
           <h2>{{ event.eventTitle }}</h2>
           <p>{{ event.description }}</p>
@@ -18,8 +17,11 @@
         </div>
 
       </ion-item>
-    <!-- </div> -->
     </ion-list>
+
+    <ion-toggle ng-model="shouldShowDelete">
+      Show delete?
+    </ion-toggle>
 
   </ion-content>
 </ion-view>
