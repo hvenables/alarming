@@ -2,15 +2,13 @@ ionicApp.controller('CreateEventController', CreateEventController);
 
 function CreateEventController(EventService, $state, $http) {
 
-  var self = this
-
-  self.addToAttendeeHash = function (key, email) {
+  this.addToAttendeeHash = function (key, email) {
     EventService.addToAttendeeHash(key, email);
   };
 
-  self.usersHash = EventService.usersHash;
+  this.usersHash = EventService.usersHash;
 
-  self.createEvent = function (title, description, date, time, postcode) {
+  this.createEvent = function (title, description, date, time, postcode) {
     var eventPostcode = postcode.replace(/\s+/g, '');
     var url = 'http://api.postcodes.io/postcodes/' + eventPostcode;
     $http.get(url).success(function (data, status, headers, config) {

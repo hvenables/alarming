@@ -13,9 +13,6 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     lng: self.userEvent().location.lng
   }
 
-  console.log(self.userEvent());
-  console.log(self.myevent);
-
   self.mapCreated = function(map) {
     self.map = map;
   };
