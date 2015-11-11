@@ -1,6 +1,6 @@
 ionicApp.controller('MyEventsController', MyEventsController);
 
-function MyEventsController(UserService) {
+function MyEventsController(UserService, $state) {
 
   var self = this;
 
@@ -20,9 +20,8 @@ function MyEventsController(UserService) {
     UserService.deleteEvent(eventId);
   }
 
-  self.testView = function (eventId) {
-    console.log('testView ' + eventId);
+  self.updateEvent = function (eventId) {
+    $state.go('tabs.updateEvent');
   }
 
-  self.listCanSwipe = true;
 }

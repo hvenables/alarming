@@ -1,0 +1,42 @@
+<ion-view view-title="Update event">
+  <ion-content>
+
+    <form name="updateForm">
+      <label class="item item-input">
+        <span class="input-label">Title</span>
+        <input type="text" ng-model="updateEventCtrl.userEvent.eventTitle">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Description</span>
+        <input type="text" ng-model="updateEventCtrl.userEvent.description">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Postcode</span>
+        <input type="text" ng-model="updateEventCtrl.userEvent.postcode">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Date</span>
+        <input id="date" name="date" type="date" ng-model="date">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Time</span>
+        <input id="time" name="time" type="time" ng-model="time">
+      </label>
+      <br>
+      <label class="item item-input">
+        <span class="input-label">Select attendees:</span>
+      </label>
+      <div ng-repeat="(uid, user) in updateEventCtrl.usersHash">
+        <ion-checkbox ng-click="updateEventCtrl.addToAttendeeHash(uid, user.email)">
+          {{ user.email }}
+        </ion-checkbox>
+      </div>
+
+      <button id="update-button" class="button button-full button-positive"
+        ng-click="updateEventCtrl.updateEvent(eventTitle, description, date, time, postcode)">
+        Update event
+      </button>
+    </form>
+
+  </ion-content>
+</ion-view>
