@@ -52,7 +52,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
         title: currentEvent.eventTitle,
         text: currentEvent.description,
         sound: "file://sounds/sucka.mp3",
-        at: ((Date.parse(new Date))+1000)
+        at: ((Date.parse(new Date))+10000)
       })
     };
 
