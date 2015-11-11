@@ -49,10 +49,10 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
       console.log('Run');
       $cordovaLocalNotification.schedule({
         id: ((currentEvent.id)+1000),
-        title: currentEvent.eventTitle,
+        title: 'Hello Harry',
         text: currentEvent.description,
         sound: "file://sounds/sucka.mp3",
-        at: ((Date.parse(new Date))+10000)
+        at: ((Date.parse(currentEvent.dateTime))
       })
     };
 
