@@ -1,6 +1,6 @@
 ionicApp.controller('MyEventsController', MyEventsController);
 
-function MyEventsController(UserService, $state) {
+function MyEventsController(UserService, $state, $location) {
 
   var self = this;
 
@@ -21,7 +21,7 @@ function MyEventsController(UserService, $state) {
   }
 
   self.updateEvent = function (eventId) {
-    $state.go('tabs.updateEvent');
+    $location.path('/update-event/' + eventId);
   }
 
 }
