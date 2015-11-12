@@ -6,6 +6,15 @@ function CreateEventController(EventService, $state, $http) {
 
   var attending = false;
 
+  function uncheckall()  {
+	  var ins = document.getElementsByTagName('input');
+	  for (var i=0; i<ins.length; i++) {
+  		if (ins[i].getAttribute('type') == 'checkbox') {
+        ins[i].checked = false;
+      }
+		}
+	}
+
   self.addToAttendeeHash = function (key, email) {
     EventService.addToAttendeeHash(key, email);
   };
@@ -21,8 +30,19 @@ function CreateEventController(EventService, $state, $http) {
         lng: data.result.longitude
       };
       EventService.createEventHash(title, description, date, time, postcode, latlong, sound);
+      clearEvent();
+      uncheckall()
       $state.go('tabs.myEvents');
     });
+  };
+
+  function clearEvent() {
+    self.eventTitle = null;
+    self.description = null;
+    self.postcode = null;
+    self.date = null;
+    self.time = null;
+    self.sound = null;
   };
 
 }
