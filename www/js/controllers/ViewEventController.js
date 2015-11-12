@@ -40,14 +40,19 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
 
   self.updateUserStatusTrue = function (key, attendee) {
     var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
     var attending = {'attending' : true}
     usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    eventsRef.child(self.eventKey).child('attendees').child(key).update(attending);
   };
 
   self.updateUserStatusFalse = function (key, attendee) {
     var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
     var attending = {'attending' : false}
     usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    eventsRef.child(self.eventKey).child('attendees').child(key).update(attending);
+    console.log(key);
   };
 
   self.latlong = {
