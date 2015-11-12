@@ -63,7 +63,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/');
+  // $urlRouterProvider.otherwise('/');
 
   $stateProvider
 
@@ -110,7 +110,7 @@ ionicApp.config(function($stateProvider, $urlRouterProvider) {
   .state('tabs.updateEvent', {
     url: '/update-event/:key',
     views: {
-      'event-tab': {
+      'my-events-tab': {
         templateUrl: 'templates/update-event.html',
         controller: 'UpdateEventController as updateEventCtrl'
       }

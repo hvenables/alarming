@@ -21,7 +21,7 @@ function MyEventsController(UserService, $state, $location) {
   }
 
   self.updateEvent = function (eventId) {
-    $location.path('/update-event/' + eventId);
+    $location.path('/tab/update-event/' + eventId);
   }
 
 }
