@@ -16,16 +16,28 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Date</span>
-        <input id="date" name="date" type="date" ng-model="date">
+        <input id="date" name="date" type="date" ng-model="updateEventCtrl.date">
       </label>
       <label class="item item-input">
         <span class="input-label">Time</span>
-        <input id="time" name="time" type="time" ng-model="time">
+        <input id="time" name="time" type="time" ng-model="updateEventCtrl.time">
+      </label>
+      <label class="item item-input item-selected">
+        <select ng-model="updateEventCtrl.sound">
+          <option value="sucka">Sucka</option>
+        </select>
       </label>
       <br>
       <label class="item item-input">
         <span class="input-label">Select attendees:</span>
       </label>
+      <br>
+      <label class="item item-input item-selected">
+        <select ng-model="createEventCtrl.sound">
+          <option value="sucka">Sucka</option>
+        </select>
+      </label>
+      <br>
       <div ng-repeat="(uid, user) in updateEventCtrl.usersHash">
         <ion-checkbox ng-click="updateEventCtrl.addToAttendeeHash(uid, user.email)">
           {{ user.email }}
@@ -33,7 +45,8 @@
       </div>
 
       <button id="update-button" class="button button-full button-positive"
-        ng-click="updateEventCtrl.updateEvent(eventTitle, description, date, time, postcode)">
+        ng-click="updateEventCtrl.updateEvent(updateEventCtrl.eventTitle, updateEventCtrl.description,
+          updateEventCtrl.date, updateEventCtrl.time, updateEventCtrl.postcode, updateEventCtrl.sound)">
         Update event
       </button>
     </form>

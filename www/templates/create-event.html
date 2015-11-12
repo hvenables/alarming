@@ -4,23 +4,23 @@
     <form name="createForm">
       <label class="item item-input">
         <span class="input-label">Title</span>
-        <input type="text" ng-model="eventTitle">
+        <input type="text" ng-model="createEventCtrl.eventTitle">
       </label>
       <label class="item item-input">
         <span class="input-label">Description</span>
-        <input type="text" ng-model="description">
+        <input type="text" ng-model="createEventCtrl.description">
       </label>
       <label class="item item-input">
         <span class="input-label">Postcode</span>
-        <input type="text" ng-model="postcode">
+        <input type="text" ng-model="createEventCtrl.postcode">
       </label>
       <label class="item item-input">
         <span class="input-label">Date</span>
-        <input id="date" name="date" type="date" ng-model="date">
+        <input id="date" name="date" type="date" ng-model="createEventCtrl.date">
       </label>
       <label class="item item-input">
         <span class="input-label">Time</span>
-        <input id="time" name="time" type="time" ng-model="time">
+        <input id="time" name="time" type="time" ng-model="createEventCtrl.time">
       </label>
       <div class="list">
         <label class="item item-input item-select">
@@ -45,8 +45,8 @@
       </div>
 
       <button id="create-button" class="button button-full button-positive"
-        ng-click="createEventCtrl.createEvent(eventTitle, description, date,
-        time, postcode, sound)">
+        ng-click="createEventCtrl.createEvent(createEventCtrl.eventTitle, createEventCtrl.description,
+         createEventCtrl.date, createEventCtrl.time, createEventCtrl.postcode, createEventCtrl.sound)">
         Add event
       </button>
     </form>

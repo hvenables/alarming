@@ -25,9 +25,21 @@ function EventService($firebaseObject) {
     return ref.child('events').push(newEvent);
   };
 
-  self.updateUserNodes = function (eventRef, newEvent) {
+  self.createUserNodes = function (eventRef, newEvent) {
     var eventObj = {};
     eventObj[eventRef.key()] = newEvent;
+    for (key in self.attendeeHash) {
+      ref.child('users').child(key).child('events').update(eventObj);
+    }
+  };
+
+  self.updateEventNode = function (newEvent, eventId) {
+    return ref.child('events').child(eventId).update(newEvent);
+  };
+
+  self.updateUserNodes = function (newEvent, eventId) {
+    var eventObj = {};
+    eventObj[eventId] = newEvent;
     for (key in self.attendeeHash) {
       ref.child('users').child(key).child('events').update(eventObj);
     }
@@ -42,13 +54,32 @@ function EventService($firebaseObject) {
       description: description,
       eventTitle: title,
       id: new Date().valueOf(),
+      location: latlong,
+      owner: owner.uid,
+      postcode: postcode,
+      sound: sound,
+    };
+    var eventRef = self.updateEventNode(newEvent);
+    self.createUserNodes(eventRef, newEvent);
+    self.attendeeHash = {};
+  };
+
+  self.updateEventHash = function (title, description, date, time, postcode, latlong, sound, eventId) {
+    var owner = ref.getAuth();
+    self.addToAttendeeHash(owner.uid, owner.password.email);
+    var newEvent = {
+      attendees: self.attendeeHash,
+      dateTime: self.makeDateTime(date, time),
+      description: description,
+      eventTitle: title,
+      id: new Date().valueOf(),
       location : latlong,
       owner: owner.uid,
-      postcode : postcode,
-      sound : sound
+      postcode: postcode,
+      sound: sound,
     };
-    var eventRef = self.createEventNode(newEvent);
-    self.updateUserNodes(eventRef, newEvent);
+    self.updateEventNode(newEvent, eventId);
+    self.updateUserNodes(newEvent, eventId);
     self.attendeeHash = {};
   };
 

@@ -51,9 +51,3 @@ a:active {
 #id {
   color: black !important;
 }
-#travel {
-  position: relative;
-  width: 290px;
-  height: 100px;
-  margin-left: 300px;
-}
