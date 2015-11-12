@@ -15,3 +15,20 @@ map {
 #locate {
   float: right;
 }
+
+#signup {
+  margin-top: 50%;
+}
+
+#loggedout {
+  /* background: url(../img/splash.png); */
+  background-color: red !important;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 90%;
+  height: 246px;
+  margin: auto;
+  z-index: 2;
+  position: relative;
+}
