@@ -22,12 +22,14 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     }
   };
 
-  self.response = function(key) {
-    if (self.userEvent().attendees[key].attending === false) {
-      self.userEvent().attendees[key].attending = true;
-    } else {
-      self.userEvent().attendees[key].attending = false;
-    }
+  self.response = function(key, attendee) {
+    if(UserService.user.email == attendee.email) {
+      if (self.userEvent().attendees[key].attending === false) {
+        self.userEvent().attendees[key].attending = true;
+      } else {
+        self.userEvent().attendees[key].attending = false;
+      }
+    };
   };
 
   self.latlong = {
@@ -50,20 +52,13 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
 
   self.showPositions = function() {
 
-    // self.loading = $ionicLoading.show({
-    //   content: 'Showing current position...',
-    //   showBackdrop: false
-    // });
-
     navigator.geolocation.getCurrentPosition(function (pos) {
       var findMe = new google.maps.Marker({
         position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
         map: self.map,
         title: "Hello World"
       });
-      console.log("hello")
       self.setBounds()
-      // self.loading.hide()
     });
   }
 
@@ -87,7 +82,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
       self.viewDirections = true;
       directionsDisplay.setPanel(document.querySelector("#directions"));
       directionsService.route({
-        origin: {lat: pos.coords.latitude, lng: pos.coords.longitude}, //current position
+        origin: {lat: pos.coords.latitude, lng: pos.coords.longitude},
         destination: {lat: self.latlong.lat, lng: self.latlong.lng},
         travelMode: google.maps.TravelMode[selectedMode]
         }, function(response, status) {
