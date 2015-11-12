@@ -14,9 +14,24 @@
             <map on-create="viewEventCtrl.mapCreated(map)" latlong='viewEventCtrl.latlong'></map>
           </ion-content>
           <ion-footer-bar class="bar-dark">
-            <a id="locate" ng-click="viewEventCtrl.centerOnMe()" class="button
+            <a id="locate" ng-click="viewEventCtrl.centerOnMe(mode)" class="button
               button-icon icon ion-navigate">Get Directions</a>
+            <select name="travelOptions" id="travelOptions"
+              ng-model="mode">
+              <option value="DRIVING">Driving</option>
+              <option value="WALKING">Walking</option>
+              <option value="BICYCLING">Bicycle</option>
+              <option value="TRANSIT">Public Transport</option>
+            </select>
+            <!-- <a id="mylocation" ng-click="viewEventCtrl.showPositions()" class="button button-icon icon -->
+              <!-- ion-navigate">Find Me</a> -->
           </ion-footer-bar>
+        </div>
+      </div>
+      <div class="item item-body" ng-show="viewEventCtrl.viewDirections">
+        <div class="item">
+          <input type="checkbox" ng-model="collapse">directions</input>
+          <div id="directions" class="item" ng-show="collapse"></div>
         </div>
       </div>
       <div class="item item-body">
@@ -26,11 +41,14 @@
             <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
             <div class="col col-100">{{ attendee.email }}</div>
             <div class= button-bar>
-              <button ng-click="viewEventCtrl.response()" class="button button-full"
+              <button ng-click="viewEventCtrl.response(key)" class="button button-full"
                 ng-class="{'button-positive': attendee.attending,
                 'button-light': !attendee.attending}">Attending</button>
-              <button ng-show="viewEventCtrl.late()" class="button button-full button-positive">Late</button>
-              <button ng-click="viewEventCtrl.response()" class="button button-full"
+              <button ng-show="viewEventCtrl.tellLate()"
+                ng-click="viewEventCtrl.late(key)" class="button button-full"
+                ng-class="{'button-light':
+                !viewEventCtrl.userEvent().attendees[key].late, 'button-positive': viewEventCtrl.userEvent().attendees[key].late}">Late</button>
+              <button ng-click="viewEventCtrl.response(key)" class="button button-full"
                 ng-class="{'button-positive': !attendee.attending,
                 'button-light': attendee.attending}">Not Coming</button>
             </div>

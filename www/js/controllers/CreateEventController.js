@@ -12,7 +12,7 @@ function CreateEventController(EventService, $state, $http) {
 
   self.usersHash = EventService.usersHash;
 
-  self.createEvent = function (title, description, date, time, postcode) {
+  self.createEvent = function (title, description, date, time, postcode, sound) {
     var eventPostcode = postcode.replace(/\s+/g, '');
     var url = 'http://api.postcodes.io/postcodes/' + eventPostcode;
     $http.get(url).success(function (data, status, headers, config) {
@@ -20,7 +20,7 @@ function CreateEventController(EventService, $state, $http) {
         lat: data.result.latitude,
         lng: data.result.longitude
       };
-      EventService.createEventHash(title, description, date, time, postcode, latlong);
+      EventService.createEventHash(title, description, date, time, postcode, latlong, sound);
       $state.go('tabs.myEvents');
     });
   };
