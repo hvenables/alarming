@@ -4,9 +4,14 @@ function UpdateEventController(UserService) {
 
   var self = this;
 
-  console.log(UserService.user.events);
-  console.log(window.location.hash.slice(19));
+  self.userEvent = function () {
+    return UserService.user.events[window.location.hash.slice(19)];
+  };
 
-  self.userEvent = UserService.user.events[window.location.hash.slice(19)];
-
-}
+  function setData() {
+    self.eventTitle = self.userEvent().eventTitle;
+    self.description = self.userEvent().description;
+    self.postcode = self.userEvent().postcode;
+  };
+  setData();
+};
