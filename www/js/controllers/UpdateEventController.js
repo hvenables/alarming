@@ -15,8 +15,7 @@ function UpdateEventController(UserService, EventService, $state, $http) {
     self.eventTitle = self.userEvent().eventTitle;
     self.description = self.userEvent().description;
     self.postcode = self.userEvent().postcode;
-    self.date= self.userEvent().dateTime;
-    self.time = self.userEvent().dateTime;
+    self.sound = self.userEvent().sound
   };
   setData();
 

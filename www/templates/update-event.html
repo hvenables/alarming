@@ -31,6 +31,13 @@
       <label class="item item-input">
         <span class="input-label">Select attendees:</span>
       </label>
+      <br>
+      <label class="item item-input item-selected">
+        <select ng-model="createEventCtrl.sound">
+          <option value="sucka">Sucka</option>
+        </select>
+      </label>
+      <br>
       <div ng-repeat="(uid, user) in updateEventCtrl.usersHash">
         <ion-checkbox ng-click="updateEventCtrl.addToAttendeeHash(uid, user.email)">
           {{ user.email }}
