@@ -17,18 +17,20 @@ map {
 }
 
 #signup {
-  margin-top: 50%;
+  margin-top: 70%;
+  opacity: 0.8;
 }
 
-#loggedout {
-  /* background: url(../img/splash.png); */
-  background-color: red !important;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  width: 90%;
-  height: 246px;
-  margin: auto;
-  z-index: 2;
-  position: relative;
+#signin {
+  opacity: 0.7;
 }
+
+
+.test {
+    background: url(../img/london-edit.png) no-repeat center center fixed;
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    background-size: 100%;
+}
+
+
