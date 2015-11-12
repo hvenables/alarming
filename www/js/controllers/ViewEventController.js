@@ -4,6 +4,8 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
 
   var self = this;
 
+  self.eventKey = window.location.hash.slice(17);
+
   self.userEvent = function () {
     return UserService.user.events[window.location.hash.slice(17)];
   };
@@ -14,28 +16,44 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     return (eventTime <= time);
   };
 
-  self.late = function(key) {
-    if (self.userEvent().attendees[key].late === false) {
-      self.userEvent().attendees[key].late = true;
-    } else {
-      self.userEvent().attendees[key].late = false;
-    }
+  self.late = function(key, attendee) {
+    if(UserService.user.email == attendee.email) {
+      if (self.userEvent().attendees[key].late === false) {
+        self.userEvent().attendees[key].late = true;
+      } else {
+        self.userEvent().attendees[key].late = false;
+      }
+    };
   };
 
   self.response = function(key, attendee) {
     if(UserService.user.email == attendee.email) {
       if (self.userEvent().attendees[key].attending === false) {
         self.userEvent().attendees[key].attending = true;
+        self.updateUserStatusTrue(key, attendee);
       } else {
         self.userEvent().attendees[key].attending = false;
+        self.updateUserStatusFalse(key, attendee);
       }
     };
+  };
+
+  self.updateUserStatusTrue = function (key, attendee) {
+    var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var attending = {'attending' : true}
+    usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+  };
+
+  self.updateUserStatusFalse = function (key, attendee) {
+    var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var attending = {'attending' : false}
+    usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
   };
 
   self.latlong = {
     lat: self.userEvent().location.lat,
     lng: self.userEvent().location.lng
-  }
+  };
 
   self.mapCreated = function(map) {
     self.map = map;

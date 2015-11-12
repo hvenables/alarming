@@ -34,7 +34,6 @@ function EventService($firebaseObject) {
   };
 
   self.updateEventNode = function (newEvent, eventId) {
-    console.log(eventId);
     return ref.child('events').child(eventId).update(newEvent);
   };
 
