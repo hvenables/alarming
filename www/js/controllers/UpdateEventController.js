@@ -12,6 +12,8 @@ function UpdateEventController(UserService) {
     self.eventTitle = self.userEvent().eventTitle;
     self.description = self.userEvent().description;
     self.postcode = self.userEvent().postcode;
+    self.date= self.userEvent().dateTime;
+    self.time = self.userEvent().dateTime;
   };
   setData();
 };
