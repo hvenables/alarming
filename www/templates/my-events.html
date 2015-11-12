@@ -4,11 +4,10 @@
     <ion-list show-delete="false" can-swipe="true">
       <ion-item ng-repeat="(key, event) in myEventsCtrl.userEvents()">
 
-        <a class="item item-avatar" ng-href="#/tab/view-event/{{ key }}">
-          <img src="img/alarming.jpg">
-          <h2>{{ event.eventTitle }}</h2>
+        <a class="list" ng-href="#/tab/view-event/{{ key }}">
+          <strong><p id="header">{{ event.eventTitle }}</p></strong>
+          <strong><p>{{ event.dateTime | date:'d MMM yyyy, HH:mm' }}</p></strong>
           <p>{{ event.description }}</p>
-          <p>{{ event.dateTime | date:'d MMM yyyy, HH:mm' }}</p>
           <p>{{ myEventsCtrl.attendeeList(event) }}</p>
         </a>
 

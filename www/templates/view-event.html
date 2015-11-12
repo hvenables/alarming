@@ -16,13 +16,20 @@
           <ion-footer-bar class="bar-dark">
             <a id="locate" ng-click="viewEventCtrl.centerOnMe(mode)" class="button
               button-icon icon ion-navigate">Get Directions</a>
-            <select name="travelOptions" id="travelOptions"
-              ng-model="mode">
-              <option value="DRIVING">Driving</option>
-              <option value="WALKING">Walking</option>
-              <option value="BICYCLING">Bicycle</option>
-              <option value="TRANSIT">Public Transport</option>
-            </select>
+              <div id="travel" class="list">
+                <label class="item item-input item-select">
+                  <div class="input-label">
+                    Transport Type
+                  </div>
+                  <select name="travelOptions" id="travelOptions"
+                    ng-model="mode">
+                    <option value="DRIVING">Driving</option>
+                    <option value="WALKING">Walking</option>
+                    <option value="BICYCLING">Bicycle</option>
+                    <option value="TRANSIT">Public Transport</option>
+                  </select>
+                </label>
+              </div>
             <!-- <a id="mylocation" ng-click="viewEventCtrl.showPositions()" class="button button-icon icon -->
               <!-- ion-navigate">Find Me</a> -->
           </ion-footer-bar>

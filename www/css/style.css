@@ -32,3 +32,28 @@ map {
   z-index: 2;
   position: relative;
 }
+#header {
+  font-size: 1.614em;
+  color: black;
+}
+a:link {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+#id {
+  color: black !important;
+}
+#travel {
+  position: relative;
+  width: 290px;
+  height: 100px;
+  margin-left: 300px;
+}
