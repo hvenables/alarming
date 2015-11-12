@@ -47,7 +47,7 @@
         <p><strong>Description:</strong> {{ viewEventCtrl.userEvent().description }}</p>
         <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
           <div class="item item-button-right">
-            {{ attendee.email }}
+            {{ attendee.email  }}
             <div class="buttons">
               <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-small ion-checkmark-round"
                 ng-class="{'button-positive': attendee.attending,
@@ -58,14 +58,16 @@
                 'button-light': attendee.attending}">
               </button>
               <button ng-show="viewEventCtrl.tellLate()"
-                ng-click="viewEventCtrl.late(key, attendee)" class="button button-full"
+                ng-click="viewEventCtrl.late(key, attendee, viewEventCtrl.lateTime)" class="button button-full"
                 ng-class="{'button-light':
                 !viewEventCtrl.userEvent().attendees[key].late.late,
                 'button-positive':
                 viewEventCtrl.userEvent().attendees[key].late.late}">
                 Late
               </button>
+              <input ng-show="attendee.late" ng-model="viewEventCtrl.lateTime" type="number"/>
             </div>
+            <p ng-show="attendee.late"><strong>Will be {{viewEventCtrl.lateTime}} minutes Late<strong></p>
           </div>
           <div>
             <input type="text"/>
