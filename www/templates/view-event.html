@@ -57,16 +57,18 @@
                 ng-class="{'button-assertive': !attendee.attending,
                 'button-light': attendee.attending}">
               </button>
-            </div>
-          </div>
-          <div class="row">
-            <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
-            <div id="attendee-email"></div>
               <button ng-show="viewEventCtrl.tellLate()"
                 ng-click="viewEventCtrl.late(key, attendee)" class="button button-full"
                 ng-class="{'button-light':
-                !viewEventCtrl.userEvent().attendees[key].late, 'button-positive': viewEventCtrl.userEvent().attendees[key].late}">Late</button>
+                !viewEventCtrl.userEvent().attendees[key].late.late,
+                'button-positive':
+                viewEventCtrl.userEvent().attendees[key].late.late}">
+                Late
+              </button>
+            </div>
           </div>
+          <div>
+            <input type="text"/>
         </div>
       </div>
 
