@@ -22,6 +22,11 @@
         <span class="input-label">Time</span>
         <input id="time" name="time" type="time" ng-model="time">
       </label>
+      <label class="item item-input item-selected">
+        <select ng-model="sound">
+          <option value="sucka">Sucka</option>
+        </select>
+      </label>
       <br>
       <label class="item item-input">
         <span class="input-label">Select attendees:</span>
@@ -33,7 +38,8 @@
       </div>
 
       <button id="create-button" class="button button-full button-positive"
-        ng-click="createEventCtrl.createEvent(eventTitle, description, date, time, postcode)">
+        ng-click="createEventCtrl.createEvent(eventTitle, description, date,
+        time, postcode, sound)">
         Add event
       </button>
     </form>
