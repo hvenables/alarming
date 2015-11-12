@@ -22,11 +22,16 @@
         <span class="input-label">Time</span>
         <input id="time" name="time" type="time" ng-model="time">
       </label>
-      <label class="item item-input item-selected">
-        <select ng-model="sound">
-          <option value="sucka">Sucka</option>
-        </select>
-      </label>
+      <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Sound
+          </div>
+          <select ng-model="sound">
+            <option selected value="sucka">Mr T</option>
+          </select>
+        </label>
+      </div>
       <br>
       <label class="item item-input">
         <span class="input-label">Select attendees:</span>
