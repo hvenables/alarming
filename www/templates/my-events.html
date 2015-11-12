@@ -13,9 +13,7 @@
         </a>
 
         <ion-option-button ng-if="event.owner === myEventsCtrl.userId()" class="button-assertive button-large ion-trash-b" ng-click="myEventsCtrl.deleteEvent(key)"></ion-option-button>
-        <ion-option-button ng-if="event.owner === myEventsCtrl.userId()"
-        class="button-balanced ion-edit"
-        ng-click="myEventsCtrl.updateEvent(key)"></ion-option-button>
+        <ion-option-button ng-if="event.owner === myEventsCtrl.userId()" class="button-balanced ion-edit" ng-click="myEventsCtrl.updateEvent(key)"></ion-option-button>
 
       </ion-item>
     </ion-list>
