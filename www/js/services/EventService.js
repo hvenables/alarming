@@ -33,7 +33,7 @@ function EventService($firebaseObject) {
     }
   };
 
-  self.createEventHash = function (title, description, date, time, postcode, latlong) {
+  self.createEventHash = function (title, description, date, time, postcode, latlong, sound) {
     var owner = ref.getAuth();
     self.addToAttendeeHash(owner.uid, owner.password.email);
     var newEvent = {
@@ -45,6 +45,7 @@ function EventService($firebaseObject) {
       location : latlong,
       owner: owner.uid,
       postcode : postcode,
+      sound : sound
     };
     var eventRef = self.createEventNode(newEvent);
     self.updateUserNodes(eventRef, newEvent);

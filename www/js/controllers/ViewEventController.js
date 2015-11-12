@@ -1,6 +1,6 @@
 ionicApp.controller('ViewEventController', ViewEventController);
 
-function ViewEventController(UserService, $location, $ionicLoading) {
+function ViewEventController(UserService, $location, $ionicLoading, $document) {
 
   var self = this;
 
@@ -39,10 +39,40 @@ function ViewEventController(UserService, $location, $ionicLoading) {
     self.map = map;
   };
 
-  self.centerOnMe = function () {
+  self.setBounds = function() {
+      var bounds = new google.maps.LatLngBounds();
+      console.log(google.map.Markers)
+      for (var i=0; i < markersArray.length; i++) {
+        bounds.extend(markersArray[i].getPosition());
+      }
+      map.fitBounds(bounds);
+  }
+
+  self.showPositions = function() {
+
+    // self.loading = $ionicLoading.show({
+    //   content: 'Showing current position...',
+    //   showBackdrop: false
+    // });
+
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var findMe = new google.maps.Marker({
+        position: { lat: pos.coords.latitude, lng: pos.coords.longitude },
+        map: self.map,
+        title: "Hello World"
+      });
+      console.log("hello")
+      self.setBounds()
+      // self.loading.hide()
+    });
+  }
+
+  self.centerOnMe = function (mode) {
     if (!self.map) {
       return;
     }
+
+    var selectedMode = mode || "DRIVING";
 
     self.loading = $ionicLoading.show({
       content: 'Getting current location...',
@@ -54,10 +84,12 @@ function ViewEventController(UserService, $location, $ionicLoading) {
       var directionsService = new google.maps.DirectionsService();
       var map = self.map;
       directionsDisplay.setMap(map);
+      self.viewDirections = true;
+      directionsDisplay.setPanel(document.querySelector("#directions"));
       directionsService.route({
         origin: {lat: pos.coords.latitude, lng: pos.coords.longitude}, //current position
         destination: {lat: self.latlong.lat, lng: self.latlong.lng},
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode: google.maps.TravelMode[selectedMode]
         }, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
