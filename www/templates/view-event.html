@@ -2,12 +2,14 @@
   <ion-content>
 
     <div class="list card">
+
       <div class="item item-avatar">
         <img src="img/alarming.jpg">
         <h2>{{ viewEventCtrl.userEvent().eventTitle }}</h2>
-        <p>{{ viewEventCtrl.userEvent().dateTime  | date:'d MMM yyyy, HH:mm' }}</p>
+        <p>{{ viewEventCtrl.userEvent().dateTime | date:'d MMM yyyy, HH:mm' }}</p>
         <p>{{ viewEventCtrl.userEvent().postcode }}</p>
       </div>
+
       <div class="item item-body">
         <div id="map">
           <ion-content scroll="false">
@@ -15,45 +17,50 @@
           </ion-content>
           <ion-footer-bar class="bar-dark">
             <a id="locate" ng-click="viewEventCtrl.centerOnMe(mode)" class="button
-              button-icon icon ion-navigate">Get Directions</a>
+              button-icon icon ion-navigate">Get directions</a>
             <select name="travelOptions" id="travelOptions"
               ng-model="mode">
-              <option value="DRIVING">Driving</option>
               <option value="WALKING">Walking</option>
-              <option value="BICYCLING">Bicycle</option>
-              <option value="TRANSIT">Public Transport</option>
+              <option value="BICYCLING">Cycling</option>
+              <option value="DRIVING">Driving</option>
+              <option value="TRANSIT">Public transport</option>
             </select>
-
           </ion-footer-bar>
         </div>
       </div>
+
       <div class="item item-body" ng-show="viewEventCtrl.viewDirections">
         <div class="item">
-          <input type="checkbox" ng-model="collapse">directions</input>
+          <input type="checkbox" ng-model="collapse"> Show full directions</input>
           <div id="directions" class="item" ng-show="collapse"></div>
         </div>
       </div>
+
       <div class="item item-body">
-        <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
+        <p><strong>Description:</strong> {{ viewEventCtrl.userEvent().description }}</p>
         <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
           <div class="row">
-            <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div>
+            <!-- <div>{{ Date.parse(viewEventCtrl.userEvent().dateTime) }}</div> -->
             <div class="col col-100">{{ attendee.email }}</div>
             <div class= button-bar>
               <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-full"
-                ng-class="{'button-positive': attendee.attending,
-                'button-light': !attendee.attending}">Attending</button>
-              <button ng-show="viewEventCtrl.tellLate()"
-                ng-click="viewEventCtrl.late(key, attendee)" class="button button-full"
-                ng-class="{'button-light':
-                !viewEventCtrl.userEvent().attendees[key].late, 'button-positive': viewEventCtrl.userEvent().attendees[key].late}">Late</button>
+                ng-class="{ 'button-positive': attendee.attending, 'button-light': !attendee.attending }">
+                Attending
+              </button>
+              <button ng-show="viewEventCtrl.tellLate()" class="button button-full" ng-click="viewEventCtrl.late(key, attendee)"
+                ng-class="{ 'button-light': !viewEventCtrl.userEvent().attendees[key].late,
+                'button-positive': viewEventCtrl.userEvent().attendees[key].late }">
+                Late
+              </button>
               <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-full"
-                ng-class="{'button-positive': !attendee.attending,
-                'button-light': attendee.attending}">Not Coming</button>
+                ng-class="{ 'button-positive': !attendee.attending, 'button-light': attendee.attending }">
+                Not coming
+              </button>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
   </ion-content>

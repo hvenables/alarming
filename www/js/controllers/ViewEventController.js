@@ -7,7 +7,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   self.eventKey = window.location.hash.slice(17);
 
   self.userEvent = function () {
-    return UserService.user.events[window.location.hash.slice(17)];
+    return UserService.user.events[self.eventKey];
   };
 
   self.tellLate = function() {
@@ -17,7 +17,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   };
 
   self.late = function(key, attendee) {
-    if(UserService.user.email == attendee.email) {
+    if (UserService.user.email == attendee.email) {
       if (self.userEvent().attendees[key].late === false) {
         self.userEvent().attendees[key].late = true;
       } else {
@@ -27,7 +27,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   };
 
   self.response = function(key, attendee) {
-    if(UserService.user.email == attendee.email) {
+    if (UserService.user.email == attendee.email) {
       if (self.userEvent().attendees[key].attending === false) {
         self.userEvent().attendees[key].attending = true;
         self.updateUserStatusTrue(key, attendee);
@@ -41,18 +41,21 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   self.updateUserStatusTrue = function (key, attendee) {
     var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
     var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
-    var attending = {'attending' : true}
-    usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    var attending = { attending: true };
+    for (var invitee in self.userEvent().attendees) {
+      usersRef.child(invitee).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    }
     eventsRef.child(self.eventKey).child('attendees').child(key).update(attending);
   };
 
   self.updateUserStatusFalse = function (key, attendee) {
     var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
     var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
-    var attending = {'attending' : false}
-    usersRef.child(key).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    var attending = { attending: false };
+    for (var invitee in self.userEvent().attendees) {
+      usersRef.child(invitee).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
+    }
     eventsRef.child(self.eventKey).child('attendees').child(key).update(attending);
-    console.log(key);
   };
 
   self.latlong = {
