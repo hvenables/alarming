@@ -63,7 +63,7 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
 
 ionicApp.config(function($stateProvider, $urlRouterProvider) {
 
-  // $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/');
 
   $stateProvider
 

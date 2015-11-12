@@ -20,12 +20,16 @@ map {
   margin-top: 50%;
 }
 
+.frame_look_feel {
+  background-color: red;
+  color:red;
+}
 #loggedout {
   /* background: url(../img/splash.png); */
   background-color: red !important;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  /* background-repeat: no-repeat; */
+  /* background-size: contain; */
+  /* background-position: center; */
   width: 90%;
   height: 246px;
   margin: auto;
