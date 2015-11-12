@@ -23,8 +23,7 @@
               <option value="BICYCLING">Bicycle</option>
               <option value="TRANSIT">Public Transport</option>
             </select>
-            <!-- <a id="mylocation" ng-click="viewEventCtrl.showPositions()" class="button button-icon icon -->
-              <!-- ion-navigate">Find Me</a> -->
+
           </ion-footer-bar>
         </div>
       </div>
@@ -45,7 +44,7 @@
                 ng-class="{'button-positive': attendee.attending,
                 'button-light': !attendee.attending}">Attending</button>
               <button ng-show="viewEventCtrl.tellLate()"
-                ng-click="viewEventCtrl.late(key)" class="button button-full"
+                ng-click="viewEventCtrl.late(key, attendee)" class="button button-full"
                 ng-class="{'button-light':
                 !viewEventCtrl.userEvent().attendees[key].late, 'button-positive': viewEventCtrl.userEvent().attendees[key].late}">Late</button>
               <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-full"
