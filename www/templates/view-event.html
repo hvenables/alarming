@@ -2,12 +2,14 @@
   <ion-content>
 
     <div class="list card">
+
       <div class="item item-avatar">
         <img src="img/alarming.jpg">
         <h2>{{ viewEventCtrl.userEvent().eventTitle }}</h2>
-        <p>{{ viewEventCtrl.userEvent().dateTime  | date:'d MMM yyyy, HH:mm' }}</p>
+        <p>{{ viewEventCtrl.userEvent().dateTime | date:'d MMM yyyy, HH:mm' }}</p>
         <p>{{ viewEventCtrl.userEvent().postcode }}</p>
       </div>
+
       <div class="item item-body">
         <div id="map">
           <ion-content scroll="false">
@@ -33,14 +35,16 @@
           </ion-footer-bar>
         </div>
       </div>
+
       <div class="item item-body" ng-show="viewEventCtrl.viewDirections">
         <div class="item">
-          <input type="checkbox" ng-model="collapse">directions</input>
+          <input type="checkbox" ng-model="collapse"> Show full directions</input>
           <div id="directions" class="item" ng-show="collapse"></div>
         </div>
       </div>
+
       <div class="item item-body">
-        <p><strong>{{ viewEventCtrl.userEvent().description }}</strong></p>
+        <p><strong>Description:</strong> {{ viewEventCtrl.userEvent().description }}</p>
         <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
           <div class="item item-button-right">
             {{ attendee.email }}
@@ -65,6 +69,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
   </ion-content>

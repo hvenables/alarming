@@ -48,6 +48,7 @@ function EventService($firebaseObject) {
   self.createEventHash = function (title, description, date, time, postcode, latlong, sound) {
     var owner = ref.getAuth();
     self.addToAttendeeHash(owner.uid, owner.password.email);
+    console.log(sound)
     var newEvent = {
       attendees: self.attendeeHash,
       dateTime: self.makeDateTime(date, time),
@@ -59,7 +60,7 @@ function EventService($firebaseObject) {
       postcode: postcode,
       sound: sound,
     };
-    var eventRef = self.updateEventNode(newEvent);
+    var eventRef = self.createEventNode(newEvent);
     self.createUserNodes(eventRef, newEvent);
     self.attendeeHash = {};
   };
