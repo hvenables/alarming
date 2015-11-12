@@ -57,20 +57,23 @@
                 ng-class="{'button-assertive': !attendee.attending,
                 'button-light': attendee.attending}">
               </button>
-              <button ng-show="viewEventCtrl.tellLate()"
+              <button ng-show="viewEventCtrl.tellLate()" ng-hide="!attendee.attending"
                 ng-click="viewEventCtrl.late(key, attendee, viewEventCtrl.lateTime)" class="button button-full"
                 ng-class="{'button-light':
                 !viewEventCtrl.userEvent().attendees[key].late.late,
                 'button-positive':
                 viewEventCtrl.userEvent().attendees[key].late.late}">
-                Late
+                E.T.A
               </button>
-              <input ng-show="attendee.late" ng-model="viewEventCtrl.lateTime" type="number"/>
+              <input ng-show="attendee.late" ng-hide="!attendee.attending" ng-model="viewEventCtrl.lateTime" type="number"/>
             </div>
-            <p ng-show="attendee.late"><strong>Will be {{viewEventCtrl.lateTime}} minutes Late<strong></p>
+            <p ng-show="attendee.late" ng-hide="!attendee.attending">
+              <strong>Will be there
+                <span ng-show="viewEventCtrl.lateTime">in {{viewEventCtrl.lateTime}} <span>
+              minutes<strong>
+            </p>
           </div>
           <div>
-            <input type="text"/>
         </div>
       </div>
 
