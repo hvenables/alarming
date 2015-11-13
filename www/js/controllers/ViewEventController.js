@@ -20,12 +20,14 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     return (eventTime <= time);
   };
 
-  self.late = function(key, attendee) {
+  self.late = function(key, attendee, minutes) {
     if (UserService.user.email == attendee.email) {
       if (self.userEvent().attendees[key].late === false) {
         self.userEvent().attendees[key].late = true;
+        self.updateUserLateTrue(key, attendee, minutes);
       } else {
         self.userEvent().attendees[key].late = false;
+        self.updateUserLateFalse(key, attendee, minutes);
       }
     };
   };
@@ -60,6 +62,34 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
       usersRef.child(invitee).child('events').child(self.eventKey).child('attendees').child(key).update(attending);
     }
     eventsRef.child(self.eventKey).child('attendees').child(key).update(attending);
+  };
+
+  self.updateUserLateTrue = function (key, attendee, minutes) {
+    var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
+    var late = { late: {
+                  late: true,
+                  amount: minutes,
+                      }
+                    };
+    for (var invitee in self.userEvent().attendees) {
+      usersRef.child(invitee).child('events').child(self.eventKey).child('attendees').child(key).update(late);
+    }
+    eventsRef.child(self.eventKey).child('attendees').child(key).update(late);
+  };
+
+  self.updateUserLateFalse = function (key, attendee, minutes) {
+    var usersRef = new Firebase('https://event-alarm.firebaseio.com/users');
+    var eventsRef = new Firebase('https://event-alarm.firebaseio.com/events');
+    var late = { late: {
+                  late: false,
+                  amount: minutes,
+                      }
+                    };
+    for (var invitee in self.userEvent().attendees) {
+      usersRef.child(invitee).child('events').child(self.eventKey).child('attendees').child(key).update(late);
+    }
+    eventsRef.child(self.eventKey).child('attendees').child(key).update(late);
   };
 
   self.latlong = {
