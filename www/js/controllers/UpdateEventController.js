@@ -27,7 +27,6 @@ function UpdateEventController(UserService, EventService, $state, $http) {
     var url = 'http://api.postcodes.io/postcodes/' + postcode.replace(/\s+/g, '');
     $http.get(url).success(function (data) {
       var latlong = { lat: data.result.latitude, lng: data.result.longitude };
-      console.log(self.eventKey);
       EventService.updateEventHash(title, description, date, time, postcode, latlong, sound, self.eventKey);
       $state.go('tabs.myEvents');
     });

@@ -45,24 +45,24 @@
 
       <div class="item item-body">
         <p><strong>Description:</strong> {{ viewEventCtrl.userEvent().description }}</p>
-        <div ng-repeat="(key, attendee) in viewEventCtrl.userEvent().attendees">
+        <div ng-repeat="(key, attendee) in viewEventCtrl.userEventAttendees()">
           <div class="item item-button-right">
             {{ attendee.email }}
             <div class="buttons">
-              <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-small ion-checkmark-round"
+              <button ng-click="viewEventCtrl.response(attendee.uid, attendee)" class="button button-small ion-checkmark-round"
                 ng-class="{'button-positive': attendee.attending,
                 'button-light': !attendee.attending}">
               </button>
-              <button ng-click="viewEventCtrl.response(key, attendee)" class="button button-small ion-close-round"
+              <button ng-click="viewEventCtrl.response(attendee.uid, attendee)" class="button button-small ion-close-round"
                 ng-class="{'button-assertive': !attendee.attending,
                 'button-light': attendee.attending}">
               </button>
               <button ng-show="viewEventCtrl.tellLate()"
-                ng-click="viewEventCtrl.late(key, attendee)" class="button button-full"
+                ng-click="viewEventCtrl.late(attendee.uid, attendee)" class="button button-full"
                 ng-class="{'button-light':
-                !viewEventCtrl.userEvent().attendees[key].late.late,
+                !viewEventCtrl.userEvent().attendees[attendee.uid].late.late,
                 'button-positive':
-                viewEventCtrl.userEvent().attendees[key].late.late}">
+                viewEventCtrl.userEvent().attendees[attendee.uid].late.late}">
                 Late
               </button>
             </div>

@@ -4,31 +4,34 @@ function UserService($firebaseAuth, $firebaseObject) {
 
   var self = this;
   var ref = new Firebase('https://event-alarm.firebaseio.com/');
+  var usersRef = ref.child('users');
 
   $firebaseAuth(ref).$onAuth(function (auth) {
-    if (auth) {
-      self.user = $firebaseObject(ref.child('users').child(auth.uid));
-    }
+    self.user = auth ? $firebaseObject(usersRef.child(auth.uid)) : null;
   });
 
-  self.attendeeList = function (userEvent) {
-    attendeeArray = [];
+  self.attendeesAsArray = function (userEvent, isUserFirst) {
+    var attArray = [];
+    var specialKey = isUserFirst ? self.user.$id : userEvent.owner;
     for (var key in userEvent.attendees) {
-      attendeeArray.push(userEvent.attendees[key].email);
+      var attendee = userEvent.attendees[key];
+      attendee.uid = key;
+      (key === specialKey) ? attArray.unshift(attendee) : attArray.push(attendee);
     }
-    return attendeeArray.join(', ');
-  }
+    return attArray;
+  };
+
+  self.attendeeList = function (userEvent, isUserFirst) {
+    return self.attendeesAsArray(userEvent, isUserFirst).map(function (attendee) {
+      return attendee.email;
+    }).join(', ');
+  };
 
   self.deleteEvent = function (eventId) {
-    console.log('about to zap event ' + eventId);
-    var eventAttendees = self.user.events[eventId].attendees;
-    for (key in eventAttendees) {
-      console.log(eventAttendees[key] + ' needs to be updated');
-      var obj = $firebaseObject(ref.child('users').child(key).child('events').child(eventId));
-      obj.$remove();
+    for (key in self.user.events[eventId].attendees) {
+      $firebaseObject(usersRef.child(key).child('events').child(eventId)).$remove();
     }
-    var obj = $firebaseObject(ref.child('events').child(eventId))
-    obj.$remove();
+    $firebaseObject(ref.child('events').child(eventId)).$remove();
   }
 
 }

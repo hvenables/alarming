@@ -10,6 +10,10 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     return UserService.user.events[self.eventKey];
   };
 
+  self.userEventAttendees = function () {
+    return UserService.attendeesAsArray(self.userEvent(), true);
+  };
+
   self.tellLate = function() {
     var eventTime = Date.parse(self.userEvent().dateTime);
     var time = Date.parse(new Date) - 600000;
