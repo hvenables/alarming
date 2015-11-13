@@ -61,7 +61,6 @@
                   <span ng-show="attendee.late.late">in {{attendee.late.amount}} minutes</span>
                 <strong>
               </div>
-              <div class="buttons">
                 <button ng-show="(UserService.user.email == attendee.email)" ng-hide="!attendee.attending"
                   ng-click="viewEventCtrl.late(attendee.uid, attendee, viewEventCtrl.lateTime)" class="button button-small"
                   ng-class="{'button-light':
@@ -70,9 +69,9 @@
                   viewEventCtrl.userEvent().attendees[attendee.uid].late.late}">
                   E.T.A
                 </button>
-              </div>
+                <input ng-show="attendee.late" ng-hide="!attendee.attending" ng-model="viewEventCtrl.lateTime" type="number"/>
+            </div>
           </div>
-          <input ng-show="attendee.late" ng-hide="!attendee.attending" ng-model="viewEventCtrl.lateTime" type="number"/>
         <div>
       </div>
     </div>
