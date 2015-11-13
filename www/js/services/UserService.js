@@ -28,13 +28,10 @@ function UserService($firebaseAuth, $firebaseObject) {
   };
 
   self.deleteEvent = function (eventId) {
-    var eventAttendees = self.user.events[eventId].attendees;
-    for (key in eventAttendees) {
-      var obj = $firebaseObject(usersRef.child(key).child('events').child(eventId));
-      obj.$remove();
+    for (key in self.user.events[eventId].attendees) {
+      $firebaseObject(usersRef.child(key).child('events').child(eventId)).$remove();
     }
-    var obj = $firebaseObject(ref.child('events').child(eventId));
-    obj.$remove();
+    $firebaseObject(ref.child('events').child(eventId)).$remove();
   }
 
 }
