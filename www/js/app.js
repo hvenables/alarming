@@ -35,10 +35,16 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
 
     function notification(currentEvent) {
       cordova.plugins.notification.local.schedule([{
-        id: 0,
+        id: currentEvent.id,
         title: currentEvent.eventTitle,
         text: currentEvent.description,
         sound: "file://sounds/" + currentEvent.sound + ".mp3",
+        at: Date.parse(currentEvent.dateTime)
+      },{
+          id: 0,
+          title: currentEvent.eventTitle,
+          text: currentEvent.description,
+          sound: "file://sounds/" + currentEvent.sound + ".mp3",
       }]);
     };
 
