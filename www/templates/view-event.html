@@ -57,8 +57,8 @@
           </div>
             <div class="item item-button-right">
               <div ng-show="attendee.late" ng-hide="!attendee.attending">
-                <strong>Will be there
-                  <span ng-show="attendee.late.late">in {{attendee.late.amount}} minutes</span>
+                <strong>Will be
+                  <span ng-show="attendee.late.late">{{attendee.late.amount}} minutes late</span>
                 <strong>
               </div>
                 <button ng-show="(UserService.user.email == attendee.email)" ng-hide="!attendee.attending"
