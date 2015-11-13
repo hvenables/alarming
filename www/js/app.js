@@ -42,8 +42,8 @@ ionicApp.run(function($ionicPlatform, $cordovaLocalNotification, $interval, $cor
         at: Date.parse(currentEvent.dateTime)
       },{
           id: 0,
-          title: currentEvent.eventTitle,
-          text: "You have been invited",
+          title: currentEvent.eventTitle,      
+          text: currentEvent.description,
           sound: "file://sounds/" + currentEvent.sound + ".mp3",
       }]);
     };
