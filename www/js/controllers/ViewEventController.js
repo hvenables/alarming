@@ -15,9 +15,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   };
 
   self.tellLate = function() {
-    var eventTime = Date.parse(self.userEvent().dateTime);
-    var time = Date.parse(new Date) - 600000;
-    return (eventTime <= time);
+    return UserService.user.email == attendee.email
   };
 
   self.late = function(key, attendee, minutes) {
