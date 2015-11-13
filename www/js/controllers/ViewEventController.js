@@ -122,12 +122,16 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     });
   }
 
-  self.centerOnMe = function (mode) {
+  self.mode = "WALKING";
+
+  self.setTransport = function(type) {
+    self.mode = type;
+  }
+
+  self.centerOnMe = function () {
     if (!self.map) {
       return;
     }
-
-    var selectedMode = mode || "DRIVING";
 
     self.loading = $ionicLoading.show({
       content: 'Getting current location...',
@@ -144,7 +148,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
       directionsService.route({
         origin: {lat: pos.coords.latitude, lng: pos.coords.longitude},
         destination: {lat: self.latlong.lat, lng: self.latlong.lng},
-        travelMode: google.maps.TravelMode[selectedMode]
+        travelMode: google.maps.TravelMode[self.mode]
         }, function(response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
