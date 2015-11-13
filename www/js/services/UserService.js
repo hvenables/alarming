@@ -7,27 +7,22 @@ function UserService($firebaseAuth, $firebaseObject) {
   var usersRef = ref.child('users');
 
   $firebaseAuth(ref).$onAuth(function (auth) {
-    if (auth) {
-      self.user = $firebaseObject(usersRef.child(auth.uid));
-    }
+    self.user = auth ? $firebaseObject(usersRef.child(auth.uid)) : null;
   });
 
-  self.attendeesAsArray = function (userEvent) {
-    var attendeeArray = [];
+  self.attendeesAsArray = function (userEvent, isUserFirst) {
+    var attArray = [];
+    var specialKey = isUserFirst ? self.user.$id : userEvent.owner;
     for (var key in userEvent.attendees) {
       var attendee = userEvent.attendees[key];
       attendee.uid = key;
-      if (key === userEvent.owner) {
-        attendeeArray.unshift(attendee);
-      } else {
-        attendeeArray.push(attendee);
-      }
+      (key === specialKey) ? attArray.unshift(attendee) : attArray.push(attendee);
     }
-    return attendeeArray;
+    return attArray;
   };
 
-  self.attendeeList = function (userEvent) {
-    return self.attendeesAsArray(userEvent).map(function (attendee) {
+  self.attendeeList = function (userEvent, isUserFirst) {
+    return self.attendeesAsArray(userEvent, isUserFirst).map(function (attendee) {
       return attendee.email;
     }).join(', ');
   };

@@ -1,6 +1,6 @@
 ionicApp.controller('MyEventsController', MyEventsController);
 
-function MyEventsController(UserService, $state, $location) {
+function MyEventsController(UserService, $state) {
 
   var self = this;
 

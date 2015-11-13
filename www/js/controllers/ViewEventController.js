@@ -11,7 +11,7 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
   };
 
   self.userEventAttendees = function () {
-    return UserService.attendeesAsArray(self.userEvent());
+    return UserService.attendeesAsArray(self.userEvent(), true);
   };
 
   self.tellLate = function() {
