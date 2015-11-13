@@ -14,10 +14,6 @@ function ViewEventController(UserService, $location, $ionicLoading, $document) {
     return UserService.attendeesAsArray(self.userEvent(), true);
   };
 
-  self.tellLate = function() {
-    return UserService.user.email == attendee.email
-  };
-
   self.late = function(key, attendee, minutes) {
     if (UserService.user.email == attendee.email) {
       if (self.userEvent().attendees[key].late === false) {
