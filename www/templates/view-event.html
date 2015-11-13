@@ -69,7 +69,7 @@
             </div>
             <p ng-show="attendee.late" ng-hide="!attendee.attending">
               <strong>Will be there
-                <span ng-show="viewEventCtrl.lateTime">in {{viewEventCtrl.lateTime}} <span>
+                <span ng-show="attendee.late.late">in {{attendee.late.amount}} <span>
               minutes<strong>
             </p>
           </div>
