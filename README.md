@@ -1,4 +1,4 @@
-# alarming
+# Alarming
 
 ## Team
 
