@@ -1,7 +1,5 @@
 # alarming
 
-===========
-
 ## Team
 
 - <img src="https://avatars3.githubusercontent.com/u/12090027?v=3&s=50">  [Harry Venables](https://github.com/hvenables)
